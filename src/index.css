@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #0ABF00;
+  --color-accent: #D49CFF;
+  --font-inter: "Inter", sans-serif;
+  --font-raleway: "Raleway", sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:ital,wght@1,400;1,700&display=swap');
+
+/* Quelques correctifs de base pour coller à ta maquette */
+:root {
+  background-color: #FFFFFF;
+  color: #0ABF00;
+}
+
+body {
+  margin: 0;
+  overflow: hidden; /* Pour garder l'écran fixe comme demandé */
+}
+
+/* Cache la scrollbar mais garde le scroll fonctionnel pour tes colonnes */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

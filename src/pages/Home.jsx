@@ -1,0 +1,203 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { projects } from "../data/projectsData";
+import ScrollingBanner from "../components/ui/ScrollingBanner";
+import PatternColumn from "../components/ui/PatternColumn";
+import ProjectDetail from "./ProjectDetail";
+
+const Home = () => {
+  // Gestion de l'identifiant du projet sélectionné pour l'affichage des détails
+  const [selectedId, setSelectedId] = useState(null);
+  
+  // Configuration de la transition partagée entre les composants (panneaux et images)
+  const sharedTransition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
+
+  // Recherche de l'objet projet complet correspondant à l'identifiant sélectionné
+  const project = projects.find(p => p.id === selectedId);
+
+  return (
+    <div className="h-screen w-full flex flex-col overflow-hidden font-inter text-brand bg-white relative">
+      
+      {/* Conteneur principal flexible qui occupe l'espace au-dessus de la bannière défilante */}
+      <div className="flex-1 flex overflow-hidden">
+        
+        {/* Panneau latéral gauche contenant la biographie, animé lors de la sélection d'un projet */}
+        <motion.div 
+          className="flex h-full flex-shrink-0 z-50 relative"
+          animate={{ x: selectedId ? "-25rem" : 0 }}
+          transition={sharedTransition}
+        >
+          {/* Bloc aside contenant les informations textuelles et les liens de contact */}
+          <aside className="w-[25.7rem] flex flex-col pl-[4.375rem] pr-[1.5625rem] pt-[4vh] justify-between bg-white flex-shrink-0">
+            <div className="flex-shrink-0">
+              <h1 className="text-[clamp(1rem,3vh,1.3rem)] font-bold leading-none">LOPES Léa-Anna</h1>
+              <h2 className="text-[clamp(0.85rem,2vh,1.125rem)] text-accent font-regular text-right">Bordeaux, France</h2>
+            </div>
+
+            <div className="flex-1 flex flex-col justify-between min-h-0 pt-[4vh] pb-[2vh]">
+              {/* Section de présentation biographique */}
+              <section>
+                <div className="relative pl-[3.9rem] mb-2">
+                  <img src="/illu-propos.svg" alt="" className="absolute -left-[-35px] -translate-y-2/3 w-[4vh] h-[4vh] object-contain" />
+                  <h3 className="text-[clamp(0.85rem,2vh,1rem)] font-bold">A propos...</h3>
+                </div>
+                <p className="text-[clamp(0.85rem,1.8vh,1rem)] leading-tight text-justify whitespace-pre-line">
+                  Je développe une pratique à la croisée de la direction artistique numérique, de l’UI design et du Level design, tout en explorant des médiums traditionnels tels que la sérigraphie, la gravure, la peinture et la sculpture.
+                  {"\n\n"}
+                  Formée à l’École des Gobelins et au CNAM-ENJMIN en Interactive Design, et titulaire d’un Bachelor en Direction Artistique Multimédia ainsi que d’un Master en Arts plastiques, j’articule mon travail entre création numérique et recherche plastique.
+                </p>
+              </section>
+
+              {/* Section détaillant le parcours professionnel */}
+              <section>
+                <div className="relative pl-[3.9rem] mb-2">
+                  <img src="/illu-exp.svg" alt="" className="absolute -left-[-40px] -translate-y-2/3 w-[3vh] h-[3vh] object-contain" />
+                  <h3 className="text-[clamp(0.85rem,2vh,1rem)] font-bold">Experiences professionnelles...</h3>
+                </div>
+                <p className="text-[clamp(0.85rem,1.8vh,1rem)] leading-tight text-justify whitespace-pre-line">
+                  Avec près de 3 ans d’expérience en communication et marketing, j’ai travaillé sur la direction artistique 360°, le community management et le design graphique.
+                  {"\n\u00A0"} 
+                  J’ai également animé des activités ludopédagogiques autour des TCG et enseigné les arts plastiques en écoles primaires et secondaires.
+                </p>
+              </section>
+
+              {/* Liste des liens de contact et bouton de téléchargement du CV */}
+              <section className="pl-[3.9rem]">
+                <h3 className="text-[clamp(0.85rem,2vh,1.125rem)] mb-2">Mes contacts</h3>
+                <div className="flex flex-col text-[clamp(0.85rem,1.8vh,1.125rem)]">
+                  <a href="mailto:leaanna.lps@gmail.com" className="flex items-center gap-[12px] hover:text-accent transition-colors no-underline">
+                    <img src="/arrow.svg" alt="" className="w-[2vh] h-[2vh]" /> E-mail
+                  </a>
+
+                  <a href="https://pindmie.itch.io/" className="flex items-center gap-[12px] hover:text-accent transition-colors no-underline">
+                    <img src="/arrow.svg" alt="" className="w-[2vh] h-[2vh]" /> Itch.io
+                  </a>
+
+                <a href="public/CV - LOPES Léa-Anna 2026.pdf" className="mt-[2vh] flex items-center justify-center gap-[10px] border border-brand px-[12px] py-[4px] mb-[2vh] rounded-full font-bold uppercase text-[clamp(0.7rem,1.5vh,0.9rem)]
+             text-brand bg-white hover:bg-brand hover:text-white transition-colors duration-300"
+                >
+               {/* SVG inline download */}
+              <svg 
+               xmlns="http://www.w3.org/2000/svg" 
+               viewBox="0 0 16 16" 
+                fill="currentColor" 
+               className="w-[2vh] h-[2vh] transition-colors duration-300"
+               >
+                 <g clipPath="url(#clip0_1_107)">
+                 <path d="M0.167429 11.3864L1.24679 13.2559L12.2164 6.92261L13.2958 8.79212L15.1241 7.73657L14.0447 5.86705L15.873 4.8115L14.7936 2.94198L12.9654 3.99754L11.886 2.12802L10.0577 3.18358L11.1371 5.05309L0.167429 11.3864ZM7.15008 2.36962L8.97835 1.31406L10.0577 3.18358L8.22944 4.23913L7.15008 2.36962ZM7.15008 2.36962L5.3218 3.42517L4.24244 1.55566L6.07071 0.500102L7.15008 2.36962ZM12.5469 11.7172L14.3752 10.6616L13.2958 8.79212L11.4675 9.84768L12.5469 11.7172ZM12.5469 11.7172L10.7186 12.7727L11.798 14.6423L13.6263 13.5867L12.5469 11.7172Z" />
+              </g>
+              <defs>
+                <clipPath id="clip0_1_107">
+                 <rect width="16" height="15.1111" fill="white"/>
+                 </clipPath>
+                 </defs>
+               </svg>
+                    Télécharger mon CV
+                 </a>
+                </div>
+              </section>
+            </div>
+          </aside>
+
+          {/* Séparateur visuel vertical utilisant un motif SVG */}
+          <div className="flex-shrink-0 bg-white">
+            <PatternColumn width="8px"/>
+          </div>
+        </motion.div>
+
+        {/* Zone centrale principale affichant la grille des travaux */}
+        <main className="flex-1 flex flex-col relative bg-white overflow-hidden z-10">
+          
+          {/* Section supérieure du panneau central avec animation de l'illustration */}
+          <motion.div 
+            layoutId="header-section"
+            transition={sharedTransition}
+            className="w-full h-[8vh] border-b border-brand flex-shrink-0 relative flex items-center justify-center"
+          >
+            <AnimatePresence>
+              {!selectedId && (
+                <motion.img 
+                  key="header-illu-static"
+                  layout={false}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  src="/illu-header-main.svg" 
+                  alt="" 
+                  className="h-[2.5vh] object-contain pointer-events-none" 
+                />
+              )}
+            </AnimatePresence>
+          </motion.div>
+          
+          {/* Grille responsive affichant les miniatures des projets via un mapping des données */}
+          <div className="flex-1 overflow-y-auto no-scrollbar p-[4vh]">
+            <div className="grid grid-cols-2 gap-[1vw]">
+              {projects.map((p) => (
+                <div key={p.id} onClick={() => setSelectedId(p.id)} className="cursor-pointer">
+                  {/* Conteneur de l'image avec effet de survol et transition layoutId partagée */}
+                  <motion.div 
+                    whileHover={{ scale: 1.02 }}
+                    className="aspect-video bg-gray-50 overflow-hidden"
+                  >
+                    <motion.img 
+                      layoutId={`img-${p.id}`}
+                      src={p.mainImage.src} 
+                      transition={sharedTransition}
+                      initial={false}
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section inférieure du panneau central avec illustration animée en sortie */}
+          <AnimatePresence>
+            {!selectedId && (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-full h-[8vh] flex items-center justify-center border-t border-brand flex-shrink-0 px-[4vh]"
+              >
+                <img 
+                  src="/illu-footer-main.svg" 
+                  alt="" 
+                  className="w-full h-[2.5vh] object-contain" 
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+        </main>
+
+        {/* Panneau latéral droit fixe contenant le motif décoratif large */}
+        <div className="h-full z-40 w-[180px] flex-shrink-0">
+          <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l" />
+        </div>
+      </div>
+
+      {/* Overlay affichant les détails spécifiques du projet sélectionné via AnimatePresence */}
+      <AnimatePresence>
+        {selectedId && (
+          <ProjectDetail 
+            project={project} 
+            onClose={() => setSelectedId(null)} 
+            sharedTransition={sharedTransition}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Bannière défilante positionnée au bas de l'écran avec une priorité d'affichage z-index élevée */}
+      <div className="relative z-[100]">
+        <ScrollingBanner />
+      </div>
+    </div>
+  );
+};
+
+export default Home;
