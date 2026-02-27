@@ -73,7 +73,7 @@ const Home = () => {
                     <img src="/arrow.svg" alt="" className="w-[2vh] h-[2vh]" /> Itch.io
                   </a>
 
-                <a href="public/CV - LOPES Léa-Anna 2026.pdf" className="mt-[2vh] flex items-center justify-center gap-[10px] border border-brand px-[12px] py-[4px] mb-[2vh] rounded-full font-bold uppercase text-[clamp(0.7rem,1.5vh,0.9rem)]
+                <a href="/CV - LOPES Léa-Anna 2026.pdf" className="mt-[2vh] flex items-center justify-center gap-[10px] border border-brand px-[12px] py-[4px] mb-[2vh] rounded-full font-bold uppercase text-[clamp(0.7rem,1.5vh,0.9rem)]
              text-brand bg-white hover:bg-brand hover:text-white transition-colors duration-300"
                 >
                {/* SVG inline download */}

@@ -22,7 +22,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src:"public/Note to myself 1.jpg",
+      src:"/Note to myself 1.jpg",
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -31,22 +31,22 @@ export const projects = [
       
       // Exemple IMG
       { 
-        src: "public/Note to myself 2.jpg", 
+        src: "/Note to myself 2.jpg", 
         ratio: "aspect-video",    // Format 16/9
         },
 
         { 
-        src: "public/Note to myself 3.jpg", 
+        src: "/Note to myself 3.jpg", 
         ratio: "aspect-video",    // Format 16/9
         },
 
         { 
-        src: "public/Note to myself 4.jpg", 
+        src: "/Note to myself 4.jpg", 
         ratio: "aspect-video",    // Format 16/9
         },
 
         { 
-        src: "public/Note to myself 5.jpg", 
+        src: "/Note to myself 5.jpg", 
         ratio: "aspect-video",    // Format 16/9
         },
     ]
@@ -78,25 +78,25 @@ export const projects = [
     gallery: [
       // Exemple IMG
       { 
-        src: "public/Ou Koné 2.png", 
+        src: "/Ou Koné 2.png", 
         ratio: "aspect-square"  // Format carré
       },
       { 
-        src: "public/Ou Koné 3.png", 
+        src: "/Ou Koné 3.png", 
         ratio: "aspect-video",    // Format 16/9
       },
       { 
-        src: "public/Ou koné Motion.mp4",     // Chemin du fichier vidéo
+        src: "/Ou koné Motion.mp4",     // Chemin du fichier vidéo
         type: "video",          // Préciser s'il s'agit d'une vidéo
         ratio: "aspect-video",  // Format 16/9
         config: "autoplay"      // Lecture automatique sans son par défaut
       },
       { 
-        src: "public/Ou Koné 5.png", 
+        src: "/Ou Koné 5.png", 
         ratio: "aspect-square"  // Format carré
       },
       { 
-        src: "public/Ou Koné 4.png", 
+        src: "/Ou Koné 4.png", 
         ratio: "aspect-square"  // Format carré
       },
     
@@ -121,7 +121,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src: "public/Moulin 1.jpg", // Chemin de l'image dans le dossier public
+      src: "/Moulin 1.jpg", // Chemin de l'image dans le dossier public
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -129,15 +129,15 @@ export const projects = [
     gallery: [
       // Exemple IMG
       { 
-        src: "public/Moulin 2.png", 
+        src: "/Moulin 2.png", 
         ratio: "aspect-video",    // Format 16/9
       },
       { 
-        src: "public/Moulin 5.png", 
+        src: "/Moulin 5.png", 
         ratio: "aspect-video",    // Format 16/9
       },
       { 
-        src: "public/Moulin 3 Epi.png", 
+        src: "/Moulin 3 Epi.png", 
         ratio: "aspect-video",    // Format 16/9
       },
     ]
@@ -160,7 +160,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src: "public/sérigraphie 1.png", // Chemin de l'image dans le dossier public
+      src: "/sérigraphie 1.png", // Chemin de l'image dans le dossier public
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -168,12 +168,12 @@ export const projects = [
     gallery: [
       // Exemple IMG
       { 
-        src: "public/sérigraphie 2.png", 
+        src: "/sérigraphie 2.png", 
         ratio: "aspect-video",    // Format 16/9
       },
 
       { 
-        src: "public/sérigraphie 3.png", 
+        src: "/sérigraphie 3.png", 
         ratio: "aspect-video",    // Format 16/9
       },
     ]
@@ -195,7 +195,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src: "public/Motion pp.png", // Chemin de l'image dans le dossier public
+      src: "/Motion pp.png", // Chemin de l'image dans le dossier public
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -203,14 +203,14 @@ export const projects = [
     gallery: [
       // Exemple IMG
       { 
-        src: "public/Motion B.mp4",     // Chemin du fichier vidéo
+        src: "/Motion B.mp4",     // Chemin du fichier vidéo
         type: "video",          // Préciser s'il s'agit d'une vidéo
         ratio: "aspect-video",  // Format 16/9
         config: "autoplay"      // Lecture automatique sans son par défaut
       },
 
       { 
-        src: "public/Motion A.mp4",     // Chemin du fichier vidéo
+        src: "/Motion A.mp4",     // Chemin du fichier vidéo
         type: "video",          // Préciser s'il s'agit d'une vidéo
         ratio: "aspect-video",  // Format 16/9
         config: "autoplay"      // Lecture automatique sans son par défaut
@@ -234,7 +234,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src: "public/Web Design PP.png", // Chemin de l'image dans le dossier public
+      src: "/Web Design PP.png", // Chemin de l'image dans le dossier public
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -242,15 +242,15 @@ export const projects = [
     gallery: [
       // Exemple IMG
       { 
-        src: "public/Web design 1.png", 
+        src: "/Web design 1.png", 
         ratio: "aspect-auto",
       },
       { 
-        src: "public/Web Design Noël.png", 
+        src: "/Web Design Noël.png", 
         ratio: "aspect-video",    // Format 16/9
       },
       { 
-        src: "public/Web Design Influence.png", 
+        src: "/Web Design Influence.png", 
         ratio: "aspect-auto",
       },
     ]
@@ -272,14 +272,14 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src: "public/La mer 1.jpg", // Chemin de l'image dans le dossier public
+      src: "/La mer 1.jpg", // Chemin de l'image dans le dossier public
       ratio: "aspect-video",    // Format 16/9
     }, 
 
     // Liste des médias dans le slider
     gallery: [
       { 
-        src: "public/La mer motion.mp4",     // Chemin du fichier vidéo
+        src: "/La mer motion.mp4",     // Chemin du fichier vidéo
         type: "video",          // Préciser s'il s'agit d'une vidéo
         ratio: "aspect-video",  // Format 16/9
         config: "autoplay"      // Lecture automatique sans son par défaut
@@ -287,11 +287,11 @@ export const projects = [
 
       // Exemple IMG
       { 
-        src: "public/La mer 2.jpg", 
+        src: "/La mer 2.jpg", 
         ratio: "aspect-auto",
       },
       { 
-        src: "public/La mer 3.jpg", 
+        src: "/La mer 3.jpg", 
         ratio: "aspect-auto",
       },
     ]
