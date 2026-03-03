@@ -42,12 +42,12 @@ const CustomCursor = () => {
 
   return (
     <svg
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999] mix-blend-difference"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"
       style={{ fill: "none" }}
     >
       <path
         d={d}
-        stroke="#0ABF00" // Ta couleur brand
+        stroke="#D49CFF" // Ta couleur brand
         strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"

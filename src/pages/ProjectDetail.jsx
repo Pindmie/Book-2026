@@ -7,6 +7,14 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
   const [width, setWidth] = useState(0);
   const [muted, setMuted] = useState(true);
 
+  // Fonction pour faire défiler le slider manuellement
+  const scrollSlider = (direction) => {
+    if (carouselRef.current) {
+      const scrollAmount = direction === "next" ? 400 : -400;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
   // Calcul de la largeur scrollable pour limiter le mouvement de glisse (drag)
   useEffect(() => {
     if (carouselRef.current) {
@@ -30,19 +38,21 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
       >
         <button 
           onClick={onClose}
-          className="absolute left-[4vh] bottom-[1.5vh] flex items-center gap-2 font-bold uppercase text-brand hover:text-accent transition-colors group"
+          className="absolute left-[4vh] bottom-[1.5vh] flex items-center gap-1 font-bold uppercase text-brand hover:text-accent transition-colors group"
         >
-          <img src="/arrow-back.svg" alt="" className="w-[2vh] h-[2vh]" />
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35784 11.1113L14.2718 4L16 5.7775L9.95012 12L16 18.2225L14.2718 20L7.35784 12.8887C7.12872 12.653 7 12.3333 7 12C7 11.6667 7.12872 11.347 7.35784 11.1113Z" fill="currentColor"/>
+          </svg>
           RETOUR
         </button>
       </motion.div>
 
-      <main className="flex-1 flex flex-col p-[4vh] bg-white overflow-hidden">
+      <main className="flex-1 flex flex-col p-[4vh] bg-white overflow-hidden relative">
         
         {/* Slider horizontal permettant de faire defiler les images et videos du projet */}
         <motion.div 
           ref={carouselRef}
-          className="flex-shrink-0 mb-[4vh] h-[35vh] cursor-grab active:cursor-grabbing overflow-hidden"
+          className="flex-shrink-0 mb-[4vh] h-[35vh] cursor-grab active:cursor-grabbing overflow-x-auto no-scrollbar scroll-smooth"
         >
           <motion.div 
             drag="x"
@@ -75,7 +85,10 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
                     />
                     {/* Bouton de controle du son pour les videos en lecture automatique */}
                     <button 
-                      onClick={() => setMuted(!muted)}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Empeche le clic de declencher d'autres actions
+                        setMuted(!muted);
+                      }}
                       className="absolute bottom-4 right-4 z-50 bg-white/20 p-2 rounded-full backdrop-blur-sm hover:bg-white/40 transition-colors"
                     >
                       <span className="text-[10px]">{muted ? "🔈" : "🔊"}</span>
@@ -88,6 +101,16 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
             ))}
           </motion.div>
         </motion.div>
+
+        {/* Bouton SUIVANT */}
+        <button 
+          onClick={() => scrollSlider("next")}
+          className="absolute right-4 top-[25vh] -translate-y-1/2 z-50 bg-white/10 hover:bg-brand p-2 transition-colors"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M15.6422 12.8887L8.72819 20L7 18.2225L13.0499 12L7 5.7775L8.72819 4L15.6422 11.1112C15.8713 11.347 16 11.6667 16 12C16 12.3333 15.8713 12.653 15.6422 12.8887Z" fill="currentcolors"/>
+          </svg>
+        </button>
 
         {/* Section d'informations textuelles affichee sous le slider */}
         <div className="flex-1 flex flex-col mx-[5vw] min-h-0">
@@ -122,18 +145,18 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
           {/* Pied de page du detail contenant les tags a gauche et les liens a droite */}
           <div className="mt-auto flex justify-between items-end pb-2 flex-shrink-0 mb-[5rem]">
   
-  {/* Liste des tags formatée en capsules */}
-  <div className="flex flex-wrap gap-2 max-w-[70%]">
-    {project.tags?.map((tag, i) => (
-      <span 
-        key={i} 
-        className="px-4 py-1 rounded-full text-white text-[0.7rem] uppercase"
-        style={{ backgroundColor: "#d49cff" }}
-      >
-        {tag}
-      </span>
-    ))}
-  </div>
+            {/* Liste des tags formatée en capsules */}
+            <div className="flex flex-wrap gap-2 max-w-[70%]">
+              {project.tags?.map((tag, i) => (
+                <span 
+                  key={i} 
+                  className="px-4 py-1 rounded-full text-white text-[0.7rem] uppercase"
+                  style={{ backgroundColor: "#d49cff" }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
 
             {/* Liens externes vers itch.io ou youtube avec icone flechee */}
             <div className="flex-col gap-8">
