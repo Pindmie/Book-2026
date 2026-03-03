@@ -104,7 +104,7 @@ export const projects = [
         ratio: "aspect-square"  // Format carré
       },
       { 
-        src: "/Ou kone/Ou Koné 5.webp", 
+        src: "/Ou kone/Ou Koné 4.webp", 
         ratio: "aspect-square"  // Format carré
       },
     
