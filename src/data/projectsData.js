@@ -84,7 +84,7 @@ export const projects = [
 
     // Liste des médias dans le slider
     gallery: [
-      // Exemple IMG
+    // Exemple IMG
       { 
         src: "/Ou kone/Ou Koné 2.webp", 
         ratio: "aspect-square"  // Format carré

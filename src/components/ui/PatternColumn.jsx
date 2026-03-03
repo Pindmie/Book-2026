@@ -8,8 +8,8 @@ const PatternColumn = ({ width = "10%", className }) => {
         <defs>
           <pattern 
             id="checkerPattern" 
-            x="0" 
-            y="16" 
+            x="" 
+            y="25" 
             width="32"   /* Largeur d'une cellule */
             height="32"  /* Hauteur d'une cellule */
             patternUnits="userSpaceOnUse"
