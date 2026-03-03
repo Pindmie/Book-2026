@@ -39,7 +39,7 @@ const Home = () => {
             <div className="flex-1 flex flex-col justify-between min-h-0 pt-[4vh] pb-[2vh]">
               <section>
                 <div className="relative pl-[3.9rem] mb-2">
-                  <img src="/illu-propos.svg" alt="" className="absolute -left-[-35px] -translate-y-2/3 w-[4vh] h-[4vh] object-contain" />
+                  <img src="/illu-propos.svg" alt="" className="absolute -left-[-30px] -translate-y-2/3 w-[4vh] h-[4vh] object-contain" />
                   <h3 className="text-[clamp(0.85rem,2vh,1rem)] font-bold">A propos...</h3>
                 </div>
                 <p className="text-[clamp(0.85rem,1.8vh,1rem)] leading-tight text-justify whitespace-pre-line">
@@ -51,7 +51,7 @@ const Home = () => {
 
               <section>
                 <div className="relative pl-[3.9rem] mb-2">
-                  <img src="/illu-exp.svg" alt="" className="absolute -left-[-40px] -translate-y-2/3 w-[3vh] h-[3vh] object-contain" />
+                  <img src="/illu-exp.svg" alt="" className="absolute -left-[-40px] -translate-y-2/3 max-w-[1.5rem] max-h-[1.5rem] object-contain" />
                   <h3 className="text-[clamp(0.85rem,2vh,1rem)] font-bold">Experiences professionnelles...</h3>
                 </div>
                 <p className="text-[clamp(0.85rem,1.8vh,1rem)] leading-tight text-justify whitespace-pre-line">
