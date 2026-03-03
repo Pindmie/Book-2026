@@ -76,7 +76,7 @@ export const projects = [
 
     // Liste des médias dans le slider
     gallery: [
-      // Exemple IMG
+    // Exemple IMG
       { 
         src: "/Ou Koné 2.png", 
         ratio: "aspect-square"  // Format carré

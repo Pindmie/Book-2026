@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "../data/projectsData";
 import ScrollingBanner from "../components/ui/ScrollingBanner";
 import PatternColumn from "../components/ui/PatternColumn";
 import ProjectDetail from "./ProjectDetail";
+import CustomScrollbar from "../components/ui/CustomScrollbar";
 
 const Home = () => {
   // Gestion de l'identifiant du projet sélectionné pour l'affichage des détails
   const [selectedId, setSelectedId] = useState(null);
+
+  // Référence pour piloter le scroll de la grille via la barre personnalisée
+  const scrollContainerRef = useRef(null);
 
   // Configuration de la transition partagée entre les composants (panneaux et images)
   const sharedTransition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
@@ -18,16 +22,14 @@ const Home = () => {
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden font-inter text-brand bg-white relative">
       
-      {/* Conteneur principal flexible qui occupe l'espace au-dessus de la bannière défilante */}
       <div className="flex-1 flex overflow-hidden">
         
-        {/* Panneau latéral gauche contenant la biographie, animé lors de la sélection d'un projet */}
+        {/* Panneau latéral gauche contenant la biographie */}
         <motion.div 
           className="flex h-full flex-shrink-0 z-50 relative"
           animate={{ x: selectedId ? "-25rem" : 0 }}
           transition={sharedTransition}
         >
-          {/* Bloc aside contenant les informations textuelles et les liens de contact */}
           <aside className="w-[25.7rem] flex flex-col pl-[4.375rem] pr-[1.5625rem] pt-[4vh] justify-between bg-white flex-shrink-0">
             <div className="flex-shrink-0">
               <h1 className="text-[clamp(1rem,3vh,1.3rem)] font-bold leading-none">LOPES Léa-Anna</h1>
@@ -35,7 +37,6 @@ const Home = () => {
             </div>
 
             <div className="flex-1 flex flex-col justify-between min-h-0 pt-[4vh] pb-[2vh]">
-              {/* Section de présentation biographique */}
               <section>
                 <div className="relative pl-[3.9rem] mb-2">
                   <img src="/illu-propos.svg" alt="" className="absolute -left-[-35px] -translate-y-2/3 w-[4vh] h-[4vh] object-contain" />
@@ -48,7 +49,6 @@ const Home = () => {
                 </p>
               </section>
 
-              {/* Section détaillant le parcours professionnel */}
               <section>
                 <div className="relative pl-[3.9rem] mb-2">
                   <img src="/illu-exp.svg" alt="" className="absolute -left-[-40px] -translate-y-2/3 w-[3vh] h-[3vh] object-contain" />
@@ -61,144 +61,143 @@ const Home = () => {
                 </p>
               </section>
 
-              {/* Liste des liens de contact et bouton de téléchargement du CV */}
               <section className="pl-[3.9rem]">
                 <h3 className="text-[clamp(0.85rem,2vh,1.125rem)] mb-2">Mes contacts</h3>
                 <div className="flex flex-col text-[clamp(0.85rem,1.8vh,1.125rem)]">
                   <a href="mailto:leaanna.lps@gmail.com" className="flex items-center gap-[12px] hover:text-accent transition-colors no-underline">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.167429 11.3864L1.24679 13.2559L12.2164 6.92261L13.2958 8.79212L15.1241 7.73657L14.0447 5.86705L15.873 4.8115L14.7936 2.94198L12.9654 3.99754L11.886 2.12802L10.0577 3.18358L11.1371 5.05309L0.167429 11.3864ZM7.15008 2.36962L8.97835 1.31406L10.0577 3.18358L8.22944 4.23913L7.15008 2.36962ZM7.15008 2.36962L5.3218 3.42517L4.24244 1.55566L6.07071 0.500102L7.15008 2.36962ZM12.5469 11.7172L14.3752 10.6616L13.2958 8.79212L11.4675 9.84768L12.5469 11.7172ZM12.5469 11.7172L10.7186 12.7727L11.798 14.6423L13.6263 13.5867L12.5469 11.7172Z" fill="currentColor"/>
+                      <path d="M0.167429 11.3864L1.24679 13.2559L12.2164 6.92261L13.2958 8.79212L15.1241 7.73657L14.0447 5.86705L15.873 4.8115L14.7936 2.94198L12.9654 3.99754L11.886 2.12802L10.0577 3.18358L11.1371 5.05309L0.167429 11.3864ZM7.15008 2.36962L8.97835 1.31406L10.0577 3.18358L8.22944 4.23913L7.15008 2.36962ZM7.15008 2.36962L5.3218 3.42517L4.24244 1.55566L6.07071 0.500102L7.15008 2.36962ZM12.5469 11.7172L14.3752 10.6616L13.2958 8.79212L11.4675 9.84768L12.5469 11.7172ZM12.5469 11.7172L10.7186 12.7727L11.798 14.6423L13.6263 13.5867L12.5469 11.7172Z" fill="currentColor"/>
                     </svg>
                     E-mail
                   </a>
-
                   <a href="https://pindmie.itch.io/" className="flex items-center gap-[12px] hover:text-accent transition-colors no-underline">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.167429 11.3864L1.24679 13.2559L12.2164 6.92261L13.2958 8.79212L15.1241 7.73657L14.0447 5.86705L15.873 4.8115L14.7936 2.94198L12.9654 3.99754L11.886 2.12802L10.0577 3.18358L11.1371 5.05309L0.167429 11.3864ZM7.15008 2.36962L8.97835 1.31406L10.0577 3.18358L8.22944 4.23913L7.15008 2.36962ZM7.15008 2.36962L5.3218 3.42517L4.24244 1.55566L6.07071 0.500102L7.15008 2.36962ZM12.5469 11.7172L14.3752 10.6616L13.2958 8.79212L11.4675 9.84768L12.5469 11.7172ZM12.5469 11.7172L10.7186 12.7727L11.798 14.6423L13.6263 13.5867L12.5469 11.7172Z" fill="currentColor"/>
+                      <path d="M0.167429 11.3864L1.24679 13.2559L12.2164 6.92261L13.2958 8.79212L15.1241 7.73657L14.0447 5.86705L15.873 4.8115L14.7936 2.94198L12.9654 3.99754L11.886 2.12802L10.0577 3.18358L11.1371 5.05309L0.167429 11.3864ZM7.15008 2.36962L8.97835 1.31406L10.0577 3.18358L8.22944 4.23913L7.15008 2.36962ZM7.15008 2.36962L5.3218 3.42517L4.24244 1.55566L6.07071 0.500102L7.15008 2.36962ZM12.5469 11.7172L14.3752 10.6616L13.2958 8.79212L11.4675 9.84768L12.5469 11.7172ZM12.5469 11.7172L10.7186 12.7727L11.798 14.6423L13.6263 13.5867L12.5469 11.7172Z" fill="currentColor"/>
                     </svg>
                     Itch.io
                   </a>
-
-                <a href="/CV - LOPES Léa-Anna 2026.pdf" className="mt-[2vh] flex items-center justify-center gap-[10px] border border-brand px-[12px] py-[4px] mb-[2vh] rounded-full font-bold uppercase text-[clamp(0.7rem,1.5vh,0.9rem)]
-             text-brand bg-white hover:bg-brand hover:text-white transition-colors duration-300"
-                >
-               {/* SVG inline download */}
-              <svg 
-               xmlns="http://www.w3.org/2000/svg" 
-               viewBox="0 0 16 16" 
-                fill="currentColor" 
-               className="w-[2vh] h-[2vh] transition-colors duration-300"
-               >
-                 <g clipPath="url(#clip0_1_107)">
-                 <path d="M0.167429 11.3864L1.24679 13.2559L12.2164 6.92261L13.2958 8.79212L15.1241 7.73657L14.0447 5.86705L15.873 4.8115L14.7936 2.94198L12.9654 3.99754L11.886 2.12802L10.0577 3.18358L11.1371 5.05309L0.167429 11.3864ZM7.15008 2.36962L8.97835 1.31406L10.0577 3.18358L8.22944 4.23913L7.15008 2.36962ZM7.15008 2.36962L5.3218 3.42517L4.24244 1.55566L6.07071 0.500102L7.15008 2.36962ZM12.5469 11.7172L14.3752 10.6616L13.2958 8.79212L11.4675 9.84768L12.5469 11.7172ZM12.5469 11.7172L10.7186 12.7727L11.798 14.6423L13.6263 13.5867L12.5469 11.7172Z" />
-              </g>
-              <defs>
-                <clipPath id="clip0_1_107">
-                 <rect width="16" height="15.1111" fill="white"/>
-                 </clipPath>
-                 </defs>
-               </svg>
+                  <a href="/CV - LOPES Léa-Anna 2026.pdf" className="mt-[2vh] flex items-center justify-center gap-[10px] border border-brand px-[12px] py-[4px] mb-[2vh] rounded-full font-bold uppercase text-[clamp(0.7rem,1.5vh,0.9rem)] text-brand bg-white hover:bg-brand hover:text-white transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-[2vh] h-[2vh] transition-colors duration-300">
+                      <g clipPath="url(#clip0_1_107)">
+                        <path d="M0.167429 11.3864L1.24679 13.2559L12.2164 6.92261L13.2958 8.79212L15.1241 7.73657L14.0447 5.86705L15.873 4.8115L14.7936 2.94198L12.9654 3.99754L11.886 2.12802L10.0577 3.18358L11.1371 5.05309L0.167429 11.3864ZM7.15008 2.36962L8.97835 1.31406L10.0577 3.18358L8.22944 4.23913L7.15008 2.36962ZM7.15008 2.36962L5.3218 3.42517L4.24244 1.55566L6.07071 0.500102L7.15008 2.36962ZM12.5469 11.7172L14.3752 10.6616L13.2958 8.79212L11.4675 9.84768L12.5469 11.7172ZM12.5469 11.7172L10.7186 12.7727L11.798 14.6423L13.6263 13.5867L12.5469 11.7172Z" />
+                      </g>
+                      <defs><clipPath id="clip0_1_107"><rect width="16" height="15.1111" fill="white"/></clipPath></defs>
+                    </svg>
                     Télécharger mon CV
-                 </a>
+                  </a>
                 </div>
               </section>
             </div>
           </aside>
-
-          {/* Séparateur visuel vertical utilisant un motif SVG */}
           <div className="flex-shrink-0 bg-white">
             <PatternColumn width="8px"/>
           </div>
         </motion.div>
 
-        {/* Zone centrale principale affichant la grille des travaux */}
-        <main className="flex-1 flex flex-col relative bg-white overflow-hidden z-10">
+        {/* Zone centrale principale */}
+        <main className="flex-1 flex flex-col relative bg-white overflow-hidden z-10 pl-2">
           
-          {/* Section supérieure du panneau central avec animation de l'illustration */}
-          <motion.div 
-            layoutId="header-section"
-            transition={sharedTransition}
-            className="w-full h-[8vh] border-b border-brand flex-shrink-0 relative flex items-center justify-center"
-          >
+          <div className="flex-1 flex flex-col min-w-0 h-full">
+            {/* Header de la grille */}
+            <motion.div 
+              layoutId="header-section"
+              transition={sharedTransition}
+              className="w-full h-[9vh] border-b-2 border-brand flex-shrink-0 relative flex items-center justify-center"
+            >
+              <AnimatePresence>
+                {!selectedId && (
+                  <motion.img 
+                    key="header-illu-static"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0 }}
+                    src="/illu-header-main.svg" 
+                    alt="" 
+                    className="h-[2.5vh] object-contain pointer-events-none" 
+                  />
+                )}
+              </AnimatePresence>
+            </motion.div>
+            
+            {/* CONTENEUR GRILLE + SCROLLBAR */}
+            <div className="flex-1 flex flex-row overflow-hidden min-h-0">
+              <div 
+                ref={scrollContainerRef}
+                className="flex-1 overflow-y-auto no-scrollbar"
+              >
+                <div className="flex flex-wrap gap-[0.8vw]">
+                  {projects.map((p, index) => {
+                    const isEvenRow = Math.floor(index / 2) % 2 === 0;
+                    const isFirstInRow = index % 2 === 0;
+                    
+                    const isLarge = isEvenRow ? isFirstInRow : !isFirstInRow;
+                    
+                    return (
+                      <div 
+                        key={p.id} 
+                        onClick={() => setSelectedId(p.id)} 
+                        className="cursor-pointer h-[38vh] flex-none"
+                        style={{ 
+                          // CORRECTION : On retire 0.8vw (le gap total d'une ligne de 2) 
+                          // multiplié par le ratio de la largeur de l'image.
+                          width: isLarge 
+                            ? "calc(58% - 0.4vw)" 
+                            : "calc(42% - 0.4vw)"
+                        }}
+                      >
+                        <div className="w-full h-full bg-gray-50 overflow-hidden border border-brand/10">
+                          <motion.img 
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            layoutId={`img-${p.id}`}
+                            src={p.mainImage.src} 
+                            initial={false}
+                            className="w-full h-full object-cover origin-center"
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* LA SCROLLBAR */}
+              {!selectedId && (
+                <div className="w-[25px] flex-shrink-0 border-l-2 border-brand bg-white h-full overflow-hidden">
+                   <CustomScrollbar scrollRef={scrollContainerRef} />
+                </div>
+              )}
+            </div>
+
+            {/* Footer de la grille */}
             <AnimatePresence>
               {!selectedId && (
-                <motion.img 
-                  key="header-illu-static"
-                  layout={false}
+                <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  src="/illu-header-main.svg" 
-                  alt="" 
-                  className="h-[2.5vh] object-contain pointer-events-none" 
-                />
+                  className="w-full h-[8vh] flex items-center justify-center border-t-2 border-brand flex-shrink-0 px-[4vh]"
+                >
+                  <img src="/illu-footer-main.svg" alt="" className="w-full h-[2.5vh] object-contain" />
+                </motion.div>
               )}
             </AnimatePresence>
-          </motion.div>
-          
-          {/* Grille responsive affichant les miniatures des projets via un mapping des données */}
-          <div className="flex-1 overflow-y-auto p-[4vh]">
-            <div className="grid grid-cols-2 gap-[1vw]">
-              {projects.map((p) => (
-                <div key={p.id} onClick={() => setSelectedId(p.id)} className="cursor-pointer">
-                  {/* Conteneur de l'image avec effet de survol et transition layoutId partagée */}
-                  <motion.div 
-                    whileHover={{ scale: 1.02 }}
-                    className="aspect-video bg-gray-50 overflow-hidden"
-                  >
-                    <motion.img 
-                      layoutId={`img-${p.id}`}
-                      src={p.mainImage.src} 
-                      transition={sharedTransition}
-                      initial={false}
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
-                </div>
-              ))}
-            </div>
           </div>
-
-          {/* Section inférieure du panneau central avec illustration animée en sortie */}
-          <AnimatePresence>
-            {!selectedId && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="w-full h-[8vh] flex items-center justify-center border-t border-brand flex-shrink-0 px-[4vh]"
-              >
-                <img 
-                  src="/illu-footer-main.svg" 
-                  alt="" 
-                  className="w-full h-[2.5vh] object-contain" 
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
         </main>
 
-        {/* Panneau latéral droit fixe contenant le motif décoratif large */}
-        <div className="h-full z-40 w-[180px] flex-shrink-0">
-          <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l" />
+        <div className="h-full z-40 w-[10vw] flex-shrink-0">
+          <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l-2" />
         </div>
       </div>
 
-      {/* Overlay affichant les détails spécifiques du projet sélectionné via AnimatePresence */}
       <AnimatePresence>
         {selectedId && (
-          <ProjectDetail 
-            project={project} 
-            onClose={() => setSelectedId(null)} 
-            sharedTransition={sharedTransition}
-          />
+          <ProjectDetail project={project} onClose={() => setSelectedId(null)} sharedTransition={sharedTransition} />
         )}
       </AnimatePresence>
 
-      {/* Bannière défilante positionnée au bas de l'écran avec une priorité d'affichage z-index élevée */}
       <div className="relative z-[100]">
         <ScrollingBanner />
       </div>
