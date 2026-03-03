@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import PatternColumn from "../components/ui/PatternColumn";
 
 const GalleryItem = ({ item }) => {
   const [isMuted, setIsMuted] = useState(true);
@@ -43,10 +44,8 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // Valeur de mouvement pour suivre le drag en temps réel
   const x = useMotionValue(0);
 
-  // On surveille le changement de "x" pour mettre à jour les boutons
   useEffect(() => {
     const unsubscribe = x.on("change", (latest) => {
       setCanScrollLeft(latest < -10);
@@ -56,13 +55,9 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
   }, [width]);
 
   const scrollSlider = (direction) => {
-    // Avec le drag Framer, on anime la valeur "x" au lieu du scroll natif
     const currentX = x.get();
     let targetX = direction === "next" ? currentX - 400 : currentX + 400;
-    
-    // On bride les valeurs
     targetX = Math.max(Math.min(0, targetX), -width);
-    
     x.set(targetX);
   };
 
@@ -70,7 +65,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
     if (carouselRef.current) {
       const timer = setTimeout(() => {
         setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
-        x.set(0); // Reset position au changement de projet
+        x.set(0);
       }, 100);
       return () => clearTimeout(timer);
     }
@@ -79,42 +74,51 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
   return (
     <motion.div 
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-      className="fixed top-0 right-[180px] left-[8px] bottom-0 z-40 bg-white flex flex-col overflow-hidden font-inter"
+      className="fixed top-0 right-0 left-[8px] bottom-0 z-40 bg-white flex overflow-hidden font-inter"
     >
-      <motion.div layoutId="header-section" transition={sharedTransition} className="w-full h-[8vh] border-b border-brand flex-shrink-0 relative">
-        <button onClick={onClose} className="absolute left-[4vh] bottom-[1.5vh] flex items-center gap-1 font-bold uppercase text-brand hover:text-accent transition-colors group">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35784 11.1113L14.2718 4L16 5.7775L9.95012 12L16 18.2225L14.2718 20L7.35784 12.8887C7.12872 12.653 7 12.3333 7 12C7 11.6667 7.12872 11.347 7.35784 11.1113Z" fill="currentColor"/>
-          </svg>
-          RETOUR
-        </button>
-      </motion.div>
-
-      <main className="flex-1 flex flex-col p-[4vh] bg-white overflow-hidden relative">
-        <div ref={carouselRef} className="flex-shrink-0 mb-[4vh] h-[35vh] overflow-hidden">
-          <motion.div 
-            drag="x"
-            style={{ x }} // On lie la position à notre MotionValue
-            dragConstraints={{ right: 0, left: -width }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="flex gap-[2vw] h-full cursor-grab active:cursor-grabbing"
+      <div className="flex-1 flex flex-col min-w-0 h-full">
+        {/* MODIF ICI : Hauteur 9vh, bordure-2 et flex center */}
+        <motion.div 
+          layoutId="header-section" 
+          transition={sharedTransition} 
+          className="w-full h-[9vh] border-b-2 border-brand flex-shrink-0 relative flex items-center"
+        >
+          <button 
+            onClick={onClose} 
+            className="ml-[4vh] flex items-center gap-1 font-bold uppercase text-brand hover:text-accent transition-colors group"
           >
-            <div className={`h-full ${project.mainImage.ratio} flex-shrink-0 overflow-hidden bg-gray-100`}>
-              <motion.img layoutId={`img-${project.id}`} src={project.mainImage.src} transition={sharedTransition} initial={false} className="w-full h-full object-cover pointer-events-none" />
-            </div>
-            {project.gallery && project.gallery.map((item, index) => (
-              <GalleryItem key={index} item={item} />
-            ))}
-          </motion.div>
-        </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M7.35784 11.1113L14.2718 4L16 5.7775L9.95012 12L16 18.2225L14.2718 20L7.35784 12.8887C7.12872 12.653 7 12.3333 7 12C7 11.6667 7.12872 11.347 7.35784 11.1113Z" fill="currentColor"/>
+            </svg>
+            RETOUR
+          </button>
+        </motion.div>
 
-        <div className="absolute right-4 top-[45vh] -translate-y-1/2 z-50 flex gap-2">
+        <main className="flex-1 flex flex-col pl-[4vh] pr-[4vh] pt-[1vh] bg-white overflow-hidden relative">
+          <div ref={carouselRef} className="flex-shrink-0 mb-[4vh] h-[35vh] overflow-hidden">
+            <motion.div 
+              drag="x"
+              style={{ x }}
+              dragConstraints={{ right: 0, left: -width }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="flex gap-[0.5vw] h-full cursor-grab active:cursor-grabbing"
+            >
+              <div className={`h-full ${project.mainImage.ratio} flex-shrink-0 overflow-hidden bg-gray-100`}>
+                <motion.img layoutId={`img-${project.id}`} src={project.mainImage.src} transition={sharedTransition} initial={false} className="w-full h-full object-cover pointer-events-none" />
+              </div>
+              {project.gallery && project.gallery.map((item, index) => (
+                <GalleryItem key={index} item={item} />
+              ))}
+            </motion.div>
+          </div>
+
+          <div className="absolute right-4 top-[45vh] -translate-y-1/2 z-50 flex gap-2">
             <button 
               onClick={() => scrollSlider("prev")}
               className={`p-2 transition-all rounded-sm ${canScrollLeft ? "text-brand hover:text-accent cursor-pointer opacity-100" : "text-brand opacity-50 cursor-default"}`}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.35784 11.1113L15.2718 4L17 5.7775L10.9501 12L17 18.2225L15.2718 20L8.35784 12.8887C8.12872 12.653 8 12.3333 8 12C8 11.6667 8.12872 11.347 8.35784 11.1113Z" fill="currentColor"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M8.35784 11.1113L15.2718 4L17 5.7775L10.9501 12L17 18.2225L15.2718 20L8.35784 12.8887C8.12872 12.653 8 12.3333 8 12C8 11.6667 8.12872 11.347 8.35784 11.1113Z" fill="currentColor"/>
               </svg>
             </button>
             <button 
@@ -122,36 +126,41 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
               className={`p-2 transition-all rounded-sm ${canScrollRight ? "text-brand hover:text-accent cursor-pointer opacity-100" : "text-brand opacity-50 cursor-default"}`}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.6422 12.8887L8.72819 20L7 18.2225L13.0499 12L7 5.7775L8.72819 4L15.6422 11.1112C15.8713 11.347 16 11.6667 16 12C16 12.3333 15.8713 12.653 15.6422 12.8887Z" fill="currentColor"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M15.6422 12.8887L8.72819 20L7 18.2225L13.0499 12L7 5.7775L8.72819 4L15.6422 11.1112C15.8713 11.347 16 11.6667 16 12C16 12.3333 15.8713 12.653 15.6422 12.8887Z" fill="currentColor"/>
               </svg>
             </button>
-        </div>
+          </div>
 
-        <div className="flex-1 flex flex-col mx-[5vw] min-h-0">
-          <div className="flex-shrink-0 mb-4">
-            <h1 className="text-[clamp(1.5rem,3vh,2.5rem)] font-bold text-brand leading-none uppercase">{project.title}</h1>
-            {project.subtitle && <h2 className="text-[clamp(0.9rem,2vh,1.1rem)] text-accent italic mt-1 uppercase">{project.subtitle}</h2>}
-          </div>
-          <div className="flex-shrink-0 text-brand text-[clamp(0.9rem,1.6vh,0.95rem)] leading-snug text-justify whitespace-pre-line overflow-hidden" style={{ columnCount: 3, columnFill: "auto", columnGap: "40px", height: "150px", width: "100%", maxWidth: "1350px" }}>
-            {project.description}
-          </div>
-          <div className="mt-auto flex justify-between items-end pb-2 flex-shrink-0 mb-[5rem]">
-            <div className="flex flex-wrap gap-2 max-w-[70%]">
-              {project.tags?.map((tag, i) => (
-                <span key={i} className="px-4 py-1 rounded-full text-white text-[0.7rem] uppercase font-bold" style={{ backgroundColor: "#d49cff" }}>{tag}</span>
-              ))}
+          <div className="flex-1 flex flex-col mx-[5vw] min-h-0">
+            <div className="flex-shrink-0 mb-4">
+              <h1 className="text-[clamp(1.5rem,3vh,2.5rem)] font-bold text-brand leading-none uppercase">{project.title}</h1>
+              {project.subtitle && <h2 className="text-[clamp(0.9rem,2vh,1.1rem)] text-accent italic mt-1 uppercase">{project.subtitle}</h2>}
             </div>
-            <div className="flex flex-col gap-8">
-              {project.links?.map((link, i) => (
-                <a key={i} href={link.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-accent hover:opacity-70 transition-opacity text-[0.9rem] italic font-bold uppercase">
-                  <img src="/arrow-accent.svg" alt="" className="w-[1.2vh] h-[1.2vh]" />
-                  {link.label}
-                </a>
-              ))}
+            <div className="flex-shrink-0 text-brand text-[clamp(0.9rem,1.6vh,0.95rem)] leading-snug text-justify whitespace-pre-line overflow-hidden" style={{ columnCount: 3, columnFill: "auto", columnGap: "40px", height: "150px", width: "100%", maxWidth: "1350px" }}>
+              {project.description}
+            </div>
+            <div className="mt-auto flex justify-between items-end pb-2 flex-shrink-0 mb-[5rem]">
+              <div className="flex flex-wrap gap-2 max-w-[70%]">
+                {project.tags?.map((tag, i) => (
+                  <span key={i} className="px-4 py-1 rounded-full text-white text-[0.7rem] uppercase font-bold" style={{ backgroundColor: "#d49cff" }}>{tag}</span>
+                ))}
+              </div>
+              <div className="flex flex-col gap-1">
+                {project.links?.map((link, i) => (
+                  <a key={i} href={link.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-accent hover:opacity-70 transition-opacity text-[0.9rem] italic font-bold uppercase">
+                    <img src="/arrow-accent.svg" alt="" className="w-[1.2vh] h-[1.2vh]" />
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
+
+      <div className="h-full z-40 w-[10vw] flex-shrink-0">
+        <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l-2" />
+      </div>
     </motion.div>
   );
 };

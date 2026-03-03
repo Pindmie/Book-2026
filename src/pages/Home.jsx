@@ -108,10 +108,6 @@ const Home = () => {
                 {!selectedId && (
                   <motion.img 
                     key="header-illu-static"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0 }}
                     src="/illu-header-main.svg" 
                     alt="" 
                     className="h-[2.5vh] object-contain pointer-events-none" 
@@ -177,7 +173,7 @@ const Home = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.3 }}
                   className="w-full h-[8vh] flex items-center justify-center border-t-2 border-brand flex-shrink-0 px-[4vh]"
                 >
                   <img src="/illu-footer-main.svg" alt="" className="w-full h-[2.5vh] object-contain" />
