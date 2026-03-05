@@ -8,8 +8,8 @@ export const projects = [
     // Projet 1
     id: "1",
     title: "Note To Myself",
-    subtitle: "Jeu Vidéo, 1er prix Daniel Sabatier, 2025",
-    description: "Note To Myself est un projet de fin d’études réalisé en groupe. C'est un jeu d’exploration narratif à la première personne dans lequel on incarne Paule, ancienne compositrice atteinte de démence sénile, qui voit sa mémoire se fragmenter au sein de son appartement. En interagissant avec les objets du quotidien, le joueur déclenche des souvenirs altérés prenant la forme d’énigmes à recomposer, tandis que l’espace lui-même devient instable et matérialise sa désorientation. \n Au cœur du gameplay, le dictaphone agit comme un ancrage dans une réalité mouvante : il permet d’enregistrer des objets, de conserver des indices sonores et de structurer la progression. Les souvenirs reconstitués nourrissent un tableau de bord évolutif, soutenant une enquête intime autour d’une silhouette mystérieuse. \n Le jeu explore ainsi l’identité, la résilience et la perte de mémoire à travers la fragilité d’un esprit qui vacille. La prestigieuse 9ᵉ édition du prix Daniel Sabatier a salué l’excellence artistique, l’originalité et l’innovation des projets, mettant en avant la capacité des talents émergents à repousser les frontières créatives et nous avons remporté le 1er prix.",
+    subtitle: "Jeu vidéo, 1er prix Daniel Sabatier, 2025",
+    description: "Note To Myself est un projet de fin d’études réalisé en groupe. C'est un jeu d’exploration narratif à la 1ère personne dans lequel on incarne Paule, ancienne compositrice atteinte de démence sénile, qui voit sa mémoire se fragmenter au sein de son appartement. En interagissant avec les objets du quotidien, le joueur déclenche des souvenirs altérés prenant la forme d’énigmes à recomposer, tandis que l’espace lui-même devient instable et matérialise sa désorientation. \n Au cœur du gameplay, le dictaphone agit comme un ancrage dans une réalité mouvante : il permet d’enregistrer des objets, de conserver des indices sonores et de structurer la progression. Les souvenirs reconstitués nourrissent un tableau de bord évolutif, soutenant une enquête intime autour d’une silhouette mystérieuse. \n Le jeu explore ainsi l’identité, la résilience et la perte de mémoire à travers la fragilité d’un esprit qui vacille. La 9ᵉ édition du prix Daniel Sabatier a récompensé l’excellence artistique, l’originalité et l’innovation des projets et nous avons eu l’honneur de remporter le 1er prix.",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
     tags: ["Direction Artistique", "UI/UX", "Level Design","Producer","Motion Design"],
@@ -60,13 +60,133 @@ export const projects = [
     ]
   },
 
+   {
+    // Mascarade Macabre
+    id: "8",
+    title: "Une Masc-Arade Macabre",
+    subtitle: "Jeu vidéo, 2026",
+    description: "Une Masc-Arade Macabre est un jeu d’enquête en point-and-click. /n « Alors que la pièce Une Masc-Arade Macabre se joue ce soir, un drame survient. Saurez-vous percer le mystère qui l’entoure ? » /n Plongé au cœur d’un meurtre énigmatique, vous incarnez l’enquêteur chargé de reconstituer la scène et de découvrir ce qui s’est réellement passé cette soirée-là. /n Explorez la scène de crime, analysez chaque indice et cliquez sur les objets pour avancer dans votre enquête. Reconstituez votre rapport grâce à un système de drag-and-drop et finalisez-le entièrement pour conclure l’enquête !",
+    
+    // Liste des étiquettes (tags) affichées en bas à gauche
+    tags: ["Illustration", "UI/UX"],
+    
+    // Liens externes
+    links: [
+      { label: "Itch.io", url: "https://ffenril.itch.io/mascarade-macabre" }
+    ],
+
+    // Image de couverture (visible sur la page d'accueil)
+    mainImage: { 
+      src:"/Masquarade macabre/Une mascarade macabre Pp 2.webp",
+      ratio: "aspect-video",    // Format 16/9
+    }, 
+
+    // Liste des médias dans le slider
+    gallery: [
+      
+      // Exemple IMG
+
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 1.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 2.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 3.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        }, 
+        
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 4.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+         
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 5.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+    ]
+  },
+  
+
+   {
+    // Le coin des barons
+    id: "9",
+    title: "Le Coin des Barons",
+    subtitle: "Communication visuelle, design graphique et direction artistique, 2024-2026",
+    description: "Pendant deux ans, j’ai contribué à la communication du Coin des Barons en concevant différents supports visuels pour les boutiques, le merchandising et les événements. J’ai participé à l’évolution de l’identité graphique de la marque et créé des contenus digitaux pour les réseaux sociaux. \n Ce travail s’est accompagné d’échanges réguliers avec les équipes boutiques afin de développer des supports adaptés aux besoins marketing et à l’animation de la communauté. \n J’ai conçu sur Figma un système de templates pour les réseaux sociaux, pensé pour être facilement déclinable et utilisé par les équipes. Ces supports sont encore utilisés aujourd’hui dans la communication de la marque. ",
+    
+    // Liste des étiquettes (tags) affichées en bas à gauche
+    tags: ["Design graphique", "Communication", "Direction artistique", "Community management", "Print", "Merchandising", "Event","Illustration"],
+    
+    // Liens externes
+    links: [
+      { label: "Instagram", url: "https://www.instagram.com/lecoindesbaronstcg/" }
+    ],
+
+    // Image de couverture (visible sur la page d'accueil)
+    mainImage: { 
+      src:"/Le coin des barons/Le coin des barons Pp.webp",
+      ratio: "aspect-video",    // Format 16/9
+    }, 
+
+    // Liste des médias dans le slider
+    gallery: [
+      
+      // Exemple IMG
+
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-1.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-2.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-3.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Le coin des barons/Le coin des barons 1.webm", // Chemin du fichier vidéo
+        type: "video",            // Préciser s'il s'agit d'une vidéo
+        ratio: "aspect-[9/16]",   // Format Reel vertical 9:16
+        config: "autoplay"        // Lecture automatique sans son par défaut
+      },   
+
+       { 
+        src: "/Le coin des barons/Le coin des barons 2.webm",     // Chemin du fichier vidéo
+        type: "video",          // Préciser s'il s'agit d'une vidéo
+        ratio: "aspect-[9/16]",   // Format Reel vertical 9:16
+        config: "autoplay"      // Lecture automatique sans son par défaut
+      },  
+        
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-4.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+         
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-5.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+    ]
+  },
 
   {
     // Projet 2
     id: "2",
     title: "Ou koné ?",
     subtitle: "Jeu de société, 2024",
-    description: "Ou Koné ? est mon projet de fin d’étude en direction artistique : la création complète d’une marque de jeu de société éducatif dédiée à la faune de l’île de La Réunion. Il mêle des univers qui me tiennent à cœur, illustration et engagement pédagogique, avec pour ambition de sensibiliser les plus jeunes à la biodiversité locale à travers le jeu. \n\n Ce projet constitue un développement de marque à 360°, construit à partir d’une analyse stratégique approfondie, puis de la conception d’une direction artistique complète, dans une logique de marque prête à être commercialisée. Une charte graphique complète ainsi qu’un dossier de synthèse regroupant l’ensemble de la stratégie ont été réalisés. \n\n Le jeu comprend 30 animaux répartis en trois catégories (eau, terre, air), illustrés dans un style semi-réaliste et kawaii, évoluant dans un univers végétal inspiré de la flore luxuriante réunionnaise. Ses mécaniques de jeu sont inspirées du principe du Qui est-ce ? : une approche simple de déduction qui permet aux enfants d’apprendre tout en s’amusant.",
+    description: "Ou Koné ? est mon projet de fin d’étude en direction artistique : la création complète d’une marque de jeu de société éducatif dédiée à la faune de l’île de La Réunion. Il mêle des univers qui me tiennent à cœur, illustration et engagement pédagogique, avec pour ambition de sensibiliser les plus jeunes à la biodiversité locale à travers le jeu. \n Ce projet constitue un développement de marque à 360°, construit à partir d’une analyse stratégique approfondie, puis de la conception d’une direction artistique complète, dans une logique de marque prête à être commercialisée. Une charte graphique complète ainsi qu’un dossier de synthèse regroupant l’ensemble de la stratégie ont été réalisés. \n Le jeu comprend 30 animaux répartis en trois catégories (eau, terre, air), illustrés dans un style semi-réaliste et kawaii, évoluant dans un univers végétal inspiré de la flore luxuriante réunionnaise. Ses mécaniques de jeu sont inspirées du principe du Qui est-ce ? : une approche simple de déduction qui permet aux enfants d’apprendre tout en s’amusant.",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
     tags: ["Direction Artistique", "Branding", "Identité Visuelle", "Illustration", "Stratégie de marque", "UX Design", "Web Design", "Packaging", "Social Media Design"],
@@ -305,4 +425,7 @@ export const projects = [
       },
     ]
   },
+
+ 
+ 
 ];

@@ -133,12 +133,12 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
           <div className="flex-1 flex flex-col mx-[5vw] min-h-0">
             <div className="flex-shrink-0 mb-4">
               <h1 className="text-[clamp(1.5rem,3vh,2.5rem)] font-bold text-brand leading-none uppercase">{project.title}</h1>
-              {project.subtitle && <h2 className="text-[clamp(0.9rem,2vh,1.1rem)] text-accent italic mt-1 uppercase">{project.subtitle}</h2>}
+              {project.subtitle && <h2 className="text-[clamp(0.9rem,2vh,1.1rem)] text-accent italic mt-1">{project.subtitle}</h2>}
             </div>
             <div className="flex-shrink-0 text-brand text-[clamp(0.9rem,1.6vh,0.95rem)] leading-snug text-justify whitespace-pre-line overflow-hidden" style={{ columnCount: 3, columnFill: "auto", columnGap: "40px", height: "150px", width: "100%", maxWidth: "1350px" }}>
               {project.description}
             </div>
-            <div className="mt-auto flex justify-between items-end pb-2 flex-shrink-0 mb-[5rem]">
+            <div className="mt-16 flex justify-between items-end pb-2 flex-shrink-0 mb-[5rem]">
               <div className="flex flex-wrap gap-2 max-w-[70%]">
                 {project.tags?.map((tag, i) => (
                   <span key={i} className="px-4 py-1 rounded-full text-white text-[0.7rem] uppercase font-bold bg-accent">{tag}</span>
@@ -147,7 +147,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
               <div className="flex flex-col gap-1">
                 {project.links?.map((link, i) => (
                   <a key={i} href={link.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-accent hover:opacity-70 transition-opacity text-[0.9rem] italic font-bold uppercase">
-                    <img src="/arrow-accent.svg" alt="" className="w-[1.2vh] h-[1.2vh]" />
+                    <img src="/arrow-accent.svg" alt="" className="w-[1.5vh] h-[1.5vh]" />
                     {link.label}
                   </a>
                 ))}
