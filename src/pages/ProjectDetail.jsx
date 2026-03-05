@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import PatternColumn from "../components/ui/PatternColumn";
 
@@ -74,10 +74,9 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
   return (
     <motion.div 
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-      className="fixed top-0 right-0 left-[8px] bottom-0 z-40 bg-white flex overflow-hidden font-inter"
+      className="fixed top-0 right-0 left-[8px] bottom-0 z-40 bg-white flex overflow-hidden font-inter text-brand"
     >
       <div className="flex-1 flex flex-col min-w-0 h-full">
-        {/* MODIF ICI : Hauteur 9vh, bordure-2 et flex center */}
         <motion.div 
           layoutId="header-section" 
           transition={sharedTransition} 
@@ -142,7 +141,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
             <div className="mt-16 flex justify-between items-end pb-2 flex-shrink-0 mb-[5rem]">
               <div className="flex flex-wrap gap-2 max-w-[70%]">
                 {project.tags?.map((tag, i) => (
-                  <span key={i} className="px-4 py-1 rounded-full text-white text-[0.7rem] uppercase font-bold" style={{ backgroundColor: "#d49cff" }}>{tag}</span>
+                  <span key={i} className="px-4 py-1 rounded-full text-white text-[0.7rem] uppercase font-bold bg-accent">{tag}</span>
                 ))}
               </div>
               <div className="flex flex-col gap-1">
@@ -159,7 +158,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
       </div>
 
       <div className="h-full z-40 w-[10vw] flex-shrink-0">
-        <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l-2" />
+        <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l-2 border-brand" />
       </div>
     </motion.div>
   );
