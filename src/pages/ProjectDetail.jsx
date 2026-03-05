@@ -148,7 +148,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
               <div className="flex flex-col gap-1">
                 {project.links?.map((link, i) => (
                   <a key={i} href={link.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-accent hover:opacity-70 transition-opacity text-[0.9rem] italic font-bold uppercase">
-                    <img src="/arrow-accent.svg" alt="" className="w-[1.2vh] h-[1.2vh]" />
+                    <img src="/arrow-accent.svg" alt="" className="w-[1.5vh] h-[1.5vh]" />
                     {link.label}
                   </a>
                 ))}

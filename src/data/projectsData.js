@@ -60,6 +60,126 @@ export const projects = [
     ]
   },
 
+   {
+    // Mascarade Macabre
+    id: "8",
+    title: "Une Masc-Arade Macabre",
+    subtitle: "Jeu Vidéo indépendant, 2026",
+    description: "Une Masc-Arade Macabre est un jeu d’enquête en point-and-click. /n « Alors que la pièce Une Masc-Arade Macabre se joue ce soir, un drame survient. Saurez-vous percer le mystère qui l’entoure ? » /n Plongé au cœur d’un meurtre énigmatique, vous incarnez l’enquêteur chargé de reconstituer la scène et de découvrir ce qui s’est réellement passé cette soirée-là. /n Explorez la scène de crime, analysez chaque indice et cliquez sur les objets pour avancer dans votre enquête. Reconstituez votre rapport grâce à un système de drag-and-drop et finalisez-le entièrement pour conclure l’enquête !",
+    
+    // Liste des étiquettes (tags) affichées en bas à gauche
+    tags: ["Illustration", "UI/UX"],
+    
+    // Liens externes
+    links: [
+      { label: "Itch.io", url: "https://ffenril.itch.io/mascarade-macabre" }
+    ],
+
+    // Image de couverture (visible sur la page d'accueil)
+    mainImage: { 
+      src:"/Masquarade macabre/Une mascarade macabre Pp 2.webp",
+      ratio: "aspect-video",    // Format 16/9
+    }, 
+
+    // Liste des médias dans le slider
+    gallery: [
+      
+      // Exemple IMG
+
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 1.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 2.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 3.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        }, 
+        
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 4.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+         
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre 5.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+    ]
+  },
+  
+
+   {
+    // Le coin des barons
+    id: "9",
+    title: "Le Coin des Barons",
+    subtitle: "Communication visuelle, design graphique et direction artistique, 2024-2026",
+    description: "Pendant deux ans, j’ai contribué à la communication du Coin des Barons en concevant différents supports visuels pour les boutiques, le merchandising et les événements. J’ai participé à l’évolution de l’identité graphique de la marque et créé des contenus digitaux pour les réseaux sociaux. \n Ce travail s’est accompagné d’échanges réguliers avec les équipes boutiques afin de développer des supports adaptés aux besoins marketing et à l’animation de la communauté. \n J’ai conçu sur Figma un système de templates pour les réseaux sociaux, pensé pour être facilement déclinable et utilisé par les équipes. Ces supports sont encore utilisés aujourd’hui dans la communication de la marque. ",
+    
+    // Liste des étiquettes (tags) affichées en bas à gauche
+    tags: ["Design graphique", "Communication", "Direction artistique", "Community management", "Print", "Merchandising", "Event","Illustration"],
+    
+    // Liens externes
+    links: [
+      { label: "Instagram", url: "https://www.instagram.com/lecoindesbaronstcg/" }
+    ],
+
+    // Image de couverture (visible sur la page d'accueil)
+    mainImage: { 
+      src:"/Le coin des barons/Le coin des barons Pp.webp",
+      ratio: "aspect-video",    // Format 16/9
+    }, 
+
+    // Liste des médias dans le slider
+    gallery: [
+      
+      // Exemple IMG
+
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-1.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-2.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-3.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+
+        { 
+        src: "/Le coin des barons/Le coin des barons 1.webm", // Chemin du fichier vidéo
+        type: "video",            // Préciser s'il s'agit d'une vidéo
+        ratio: "aspect-[9/16]",   // Format Reel vertical 9:16
+        config: "autoplay"        // Lecture automatique sans son par défaut
+      },   
+
+       { 
+        src: "/Le coin des barons/Le coin des barons 2.webm",     // Chemin du fichier vidéo
+        type: "video",          // Préciser s'il s'agit d'une vidéo
+        ratio: "aspect-[9/16]",   // Format Reel vertical 9:16
+        config: "autoplay"      // Lecture automatique sans son par défaut
+      },  
+        
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-4.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+         
+        { 
+        src: "/Le coin des barons/Le-Coin-des-Barons-5.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
+    ]
+  },
 
   {
     // Projet 2
@@ -305,4 +425,7 @@ export const projects = [
       },
     ]
   },
+
+ 
+ 
 ];
