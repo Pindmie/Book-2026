@@ -52,19 +52,20 @@ const Home = () => {
         >
           <aside className="w-[25.7rem] flex flex-col pl-[4.375rem] pr-[1.5625rem] pt-[4vh] justify-between bg-white flex-shrink-0">
             <div className="flex-shrink-0">
-              <h1 className="text-[clamp(1rem,3vh,1.3rem)] font-bold leading-none uppercase">LOPES Léa-Anna</h1>
-              <h2 className="text-[clamp(0.85rem,2vh,1.125rem)] text-accent font-regular text-right uppercase">Bordeaux, France</h2>
+              <h1 className="text-[clamp(1rem,3vh,1.3rem)] font-bold leading-none">LOPES Léa-Anna</h1>
+              <h2 className="text-[clamp(0.85rem,2vh,1.125rem)] text-accent text-right">Bordeaux, France</h2>
             </div>
 
             <div className="flex-1 flex flex-col justify-between min-h-0 pt-[4vh] pb-[2vh]">
               <section>
-                <div className="relative pl-[3.9rem] mb-2">
+                <div className="relative pl-[3.5rem] mb-2">
                   <img 
                     src={currentTheme === "dark" ? "/illu-propos-dark.svg" : "/illu-propos.svg"} 
                     alt="" 
-                    className="absolute -left-[-30px] -translate-y-2/3 w-[4vh] h-[4vh] object-contain" 
+                    className="absolute -left-[-25px] -translate-y-2/3 w-[4vh] h-[4vh] object-contain" 
                   />
-                  <h3 className="text-[clamp(0.85rem,2vh,1rem)] font-bold uppercase">A propos...</h3>
+                  <h3 className="text-[clamp(0.875rem,1.8vh,1rem)] font-bold"> 
+                    À propos...</h3>
                 </div>
                 <p className="text-[clamp(0.85rem,1.8vh,1rem)] leading-tight text-justify whitespace-pre-line">
                   Je développe une pratique à la croisée de la direction artistique numérique, de l’UI design et du Level design, tout en explorant des médiums traditionnels tels que la sérigraphie, la gravure, la peinture et la sculpture.
@@ -74,14 +75,16 @@ const Home = () => {
               </section>
 
               <section>
-                <div className="relative pl-[3.9rem] mb-2">
-                  <img 
-                    src={currentTheme === "dark" ? "/illu-exp-dark.svg" : "/illu-exp.svg"} 
-                    alt="" 
-                    className="absolute -left-[-40px] -translate-y-2/3 max-w-[1.5rem] max-h-[1.5rem] object-contain" 
-                  />
-                  <h3 className="text-[clamp(0.85rem,2vh,1rem)] font-bold uppercase">Experiences professionnelles...</h3>
-                </div>
+                <div className="relative pl-[3rem] mb-2">
+              <img 
+                src={currentTheme === "dark" ? "/illu-exp-dark.svg" : "/illu-exp.svg"} 
+                alt="" 
+                className="absolute left-5 -translate-y-2/3 w-6 h-6 object-contain" 
+              />
+              <h3 className="text-[clamp(0.875rem,1.8vh,1rem)] font-bold">
+                Expériences professionnelles...
+              </h3>
+            </div>
                 <p className="text-[clamp(0.85rem,1.8vh,1rem)] leading-tight text-justify whitespace-pre-line">
                   Avec près de 3 ans d’expérience en communication et marketing, j’ai travaillé sur la direction artistique 360°, le community management et le design graphique.
                   {"\n\u00A0"} 
@@ -94,14 +97,14 @@ const Home = () => {
                 <div className="flex flex-col text-[clamp(0.85rem,1.8vh,1.125rem)]">
                   <a 
                     onClick={(e) => { e.preventDefault(); setShowContact(true); }} 
-                    className="flex items-center gap-[12px] hover:text-accent transition-colors no-underline uppercase italic font-bold cursor-pointer"
+                    className="flex items-center gap-[12px] hover:text-accent transition-colors no-underline cursor-pointer"
                   >
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M0.167429 11.3864L1.24679 13.2559L12.2164 6.92261L13.2958 8.79212L15.1241 7.73657L14.0447 5.86705L15.873 4.8115L14.7936 2.94198L12.9654 3.99754L11.886 2.12802L10.0577 3.18358L11.1371 5.05309L0.167429 11.3864ZM7.15008 2.36962L8.97835 1.31406L10.0577 3.18358L8.22944 4.23913L7.15008 2.36962ZM7.15008 2.36962L5.3218 3.42517L4.24244 1.55566L6.07071 0.500102L7.15008 2.36962ZM12.5469 11.7172L14.3752 10.6616L13.2958 8.79212L11.4675 9.84768L12.5469 11.7172ZM12.5469 11.7172L10.7186 12.7727L11.798 14.6423L13.6263 13.5867L12.5469 11.7172Z" fill="currentColor"/>
                     </svg>
                     M’écrire !
                   </a>
-                  <a href="https://pindmie.itch.io/" className="flex items-center gap-[12px] hover:text-accent transition-colors no-underline uppercase italic font-bold">
+                  <a href="https://pindmie.itch.io/" className="flex items-center gap-[12px] hover:text-accent transition-colors no-underline">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M0.167429 11.3864L1.24679 13.2559L12.2164 6.92261L13.2958 8.79212L15.1241 7.73657L14.0447 5.86705L15.873 4.8115L14.7936 2.94198L12.9654 3.99754L11.886 2.12802L10.0577 3.18358L11.1371 5.05309L0.167429 11.3864ZM7.15008 2.36962L8.97835 1.31406L10.0577 3.18358L8.22944 4.23913L7.15008 2.36962ZM7.15008 2.36962L5.3218 3.42517L4.24244 1.55566L6.07071 0.500102L7.15008 2.36962ZM12.5469 11.7172L14.3752 10.6616L13.2958 8.79212L11.4675 9.84768L12.5469 11.7172ZM12.5469 11.7172L10.7186 12.7727L11.798 14.6423L13.6263 13.5867L12.5469 11.7172Z" fill="currentColor"/>
                     </svg>
