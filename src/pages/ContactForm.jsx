@@ -87,7 +87,7 @@ const ContactForm = ({ onClose, sharedTransition }) => {
           </div>
         </motion.div>
 
-        <main className="flex-1 flex flex-col bg-white overflow-y-auto no-scrollbar items-center justify-center py-[5vh] px-[4vh]">
+        <main className="flex-1 flex flex-col bg-white no-scrollbar items-center justify-center py-[5vh] px-[4vh]">
           <AnimatePresence mode="wait">
             {status !== "success" ? (
               <motion.div 
@@ -118,7 +118,8 @@ const ContactForm = ({ onClose, sharedTransition }) => {
                     {status === "sending" ? (
                       <span className="font-bold text-xl animate-pulse">Mail en cours d'envoi...</span>
                     ) : (
-                      <button type="submit" className="bg-brand text-white px-16 py-4 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-lg">Envoyer</button>
+                      <button type="submit" className="bg-brand text-white px-8 py-2 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-lg">
+                        Envoyer</button>
                     )}
                   </div>
                 </form>
