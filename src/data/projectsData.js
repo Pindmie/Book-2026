@@ -22,7 +22,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src:"/Note to myself/Note to myself 1.webp",
+      src:"/Note to myself/Note to myself 2.webp",
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -39,7 +39,7 @@ export const projects = [
       },
 
         { 
-        src: "/Note to myself/Note to myself 2.webp", 
+        src: "public/Note to myself/Note to myself 1.webp", 
         ratio: "aspect-video",    // Format 16/9
         },
 
@@ -77,7 +77,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src:"/Masquarade macabre/Une mascarade macabre Pp 2.webp",
+      src:"/Masquarade macabre/Une mascarade macabre 4.webp",
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -85,6 +85,11 @@ export const projects = [
     gallery: [
       
       // Exemple IMG
+
+        { 
+        src: "/Masquarade macabre/Une mascarade macabre Pp 2.webp", 
+        ratio: "aspect-video",    // Format 16/9
+        },
 
         { 
         src: "/Masquarade macabre/Une mascarade macabre 1.webp", 
@@ -100,11 +105,6 @@ export const projects = [
         src: "/Masquarade macabre/Une mascarade macabre 3.webp", 
         ratio: "aspect-video",    // Format 16/9
         }, 
-        
-        { 
-        src: "/Masquarade macabre/Une mascarade macabre 4.webp", 
-        ratio: "aspect-video",    // Format 16/9
-        },
          
         { 
         src: "/Masquarade macabre/Une mascarade macabre 5.webp", 
@@ -131,7 +131,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src:"/Le coin des barons/Le coin des barons Pp.webp",
+      src:"/Le coin des barons/Le-Coin-des-Barons-1.webp",
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -141,7 +141,7 @@ export const projects = [
       // Exemple IMG
 
         { 
-        src: "/Le coin des barons/Le-Coin-des-Barons-1.webp", 
+        src: "/Le coin des barons/Le coin des barons Pp.webp", 
         ratio: "aspect-video",    // Format 16/9
         },
 
@@ -198,7 +198,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src: "/Ou kone/Ou Koné 1.webp", // Chemin de l'image dans le dossier public
+      src: "/Ou kone/Ou Koné 2.webp", // Chemin de l'image dans le dossier public
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -206,8 +206,8 @@ export const projects = [
     gallery: [
     // Exemple IMG
       { 
-        src: "/Ou kone/Ou Koné 2.webp", 
-        ratio: "aspect-square"  // Format carré
+        src: "/Ou kone/Ou Koné 1.webp", 
+        ratio: "aspect-auto" 
       },
       { 
         src: "/Ou kone/Ou Koné 3.webp", 
