@@ -118,8 +118,12 @@ const ContactForm = ({ onClose, sharedTransition }) => {
                     {status === "sending" ? (
                       <span className="font-bold text-xl animate-pulse">Mail en cours d'envoi...</span>
                     ) : (
+<<<<<<< HEAD
                       <button type="submit" className="bg-brand text-white px-8 py-2 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-lg">
                         Envoyer</button>
+=======
+                      <button type="submit" className="bg-brand text-white px-12 py-2 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-lg">Envoyer</button>
+>>>>>>> administrateur-léa-anna
                     )}
                   </div>
                 </form>
