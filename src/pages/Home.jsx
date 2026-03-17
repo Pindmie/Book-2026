@@ -50,7 +50,8 @@ const Home = () => {
           animate={{ x: (selectedId || showContact) ? "-25rem" : 0 }}
           transition={sharedTransition}
         >
-          <aside className="w-[25.7rem] flex flex-col pl-[4.375rem] pr-[1.5625rem] pt-[4vh] justify-between bg-white flex-shrink-0">
+          <aside className="w-[25.7rem] flex flex-col pl-[4.375rem] pr-[1.5625rem] pt-[4vh] justify-between bg-white flex-shrink-0 relative">
+            
             <div className="flex-shrink-0">
               <h1 className="text-[clamp(1rem,3vh,1.3rem)] font-bold leading-none">LOPES Léa-Anna</h1>
               <h2 className="text-[clamp(0.85rem,2vh,1.125rem)] text-accent text-right">Bordeaux, France</h2>
@@ -153,11 +154,24 @@ const Home = () => {
               <AnimatePresence mode="wait">
                 {(!selectedId && !showContact) && (
                   <div key="header-container" className="flex items-center justify-center">
+                    
+                    <img 
+                    src={currentTheme === "dark" ? "/Etoile_mobile_2_dark.svg" : "/Etoile_mobile_2.svg"} 
+                    alt="" 
+                    className="h-[4vh] object-contain pointer-events-none absolute left-4 block md:hidden"
+                     />
+
                     <img 
                       src={currentTheme === "dark" ? "/illu-header-dark.svg" : "/illu-header-main.svg"} 
                       alt="" 
                       className="h-[2.5vh] object-contain pointer-events-none" 
                     />
+                    <img 
+                    src={currentTheme === "dark" ? "/Etoile_mobile_dark.svg" : "/Etoile_mobile.svg"} 
+                    alt="" 
+                    className="h-[4vh] object-contain pointer-events-none absolute right-4 block md:hidden" 
+                     />
+
                   </div>
                 )}
 
