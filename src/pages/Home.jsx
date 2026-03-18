@@ -69,7 +69,7 @@ const Home = () => {
                     À propos...</h3>
                 </div>
                 <p className="text-[clamp(0.85rem,1.8vh,1rem)] leading-tight text-justify whitespace-pre-line">
-                  Je développe une pratique à la croisée de la direction artistique numérique, de l’UI design et du Level design, tout en explorant des médiums traditionnels tels que la sérigraphie, la gravure, la peinture et la sculpture.
+                  Je travaille sur des projets numériques et artistiques, allant de la direction artistique, à l’UI, au design graphique jusqu'au level et game design, tout en pratiquant des techniques traditionnelles comme la sérigraphie, la gravure, la peinture et la sculpture.
                   {"\n\n"}
                   Formée à l’École des Gobelins et au CNAM-ENJMIN en Interactive Design, et titulaire d’un Bachelor en Direction Artistique Multimédia ainsi que d’un Master en Arts plastiques, j’articule mon travail entre création numérique et recherche plastique.
                 </p>
@@ -87,7 +87,7 @@ const Home = () => {
               </h3>
             </div>
                 <p className="text-[clamp(0.85rem,1.8vh,1rem)] leading-tight text-justify whitespace-pre-line">
-                  Avec près de 3 ans d’expérience en communication et marketing, j’ai travaillé sur la direction artistique 360°, le community management et le design graphique.
+                  Avec près de 3 ans d’expérience en communication et marketing, j’ai travaillé en direction artistique 360°, design graphique, web design et community management.
                   {"\n\u00A0"} 
                   J’ai également animé des activités ludopédagogiques autour des TCG et enseigné les arts plastiques en écoles primaires et secondaires.
                 </p>

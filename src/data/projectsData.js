@@ -9,10 +9,10 @@ export const projects = [
     id: "1",
     title: "Note To Myself",
     subtitle: "Jeu vidéo, 1er prix Daniel Sabatier, 2025",
-    description: "Note To Myself est un projet de fin d’études réalisé en groupe. C'est un jeu d’exploration narratif à la 1ère personne dans lequel on incarne Paule, ancienne compositrice atteinte de démence sénile, qui voit sa mémoire se fragmenter au sein de son appartement. En interagissant avec les objets du quotidien, le joueur déclenche des souvenirs altérés prenant la forme d’énigmes à recomposer, tandis que l’espace lui-même devient instable et matérialise sa désorientation. \n Au cœur du gameplay, le dictaphone agit comme un ancrage dans une réalité mouvante : il permet d’enregistrer des objets, de conserver des indices sonores et de structurer la progression. Les souvenirs reconstitués nourrissent un tableau de bord évolutif, soutenant une enquête intime autour d’une silhouette mystérieuse. \n Le jeu explore ainsi l’identité, la résilience et la perte de mémoire à travers la fragilité d’un esprit qui vacille. La 9ᵉ édition du prix Daniel Sabatier a récompensé l’excellence artistique, l’originalité et l’innovation des projets et nous avons eu l’honneur de remporter le 1er prix.",
+    description: "Note To Myself est un jeu d’exploration narratif à la 1ère personne dans lequel on incarne Paule, une ancienne compositrice atteinte de démence sénile. Ce jeu se passe dans un espace clos, son appartement, qui devient le reflet de sa mémoire fragmentée. Il a été réalisé dans le cadre d’un projet de fin d’études en groupe, et il explore des thématiques liées à la résilience et à la perte de mémoire. \n En interagissant avec les objets du quotidien, le joueur déclenche des souvenirs altérés sous forme d’énigmes à recomposer. Le dictaphone est l’élément central du gameplay, il permet d’ancrer la réalité et ainsi de reconstruire la mémoire de Paule. Ainsi, le gameplay déroule une enquête intime autour d’une présence mystérieuse. \n Ce projet a été récompensé par le 1er prix de la 9ᵉ édition du prix Daniel Sabatier pour son excellence artistique et son innovation.",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
-    tags: ["Direction Artistique", "UI/UX", "Level Design","Producer","Motion Design"],
+    tags: ["Direction Artistique", "UI / UX", "Level Design","Producer","Motion Design", "Illustration"],
     
     // Liens externes
     links: [
@@ -65,10 +65,10 @@ export const projects = [
     id: "8",
     title: "Une Masc-Arade Macabre",
     subtitle: "Jeu vidéo, 2026",
-    description: "Une Masc-Arade Macabre est un jeu d’enquête en point-and-click. /n « Alors que la pièce Une Masc-Arade Macabre se joue ce soir, un drame survient. Saurez-vous percer le mystère qui l’entoure ? » /n Plongé au cœur d’un meurtre énigmatique, vous incarnez l’enquêteur chargé de reconstituer la scène et de découvrir ce qui s’est réellement passé cette soirée-là. /n Explorez la scène de crime, analysez chaque indice et cliquez sur les objets pour avancer dans votre enquête. Reconstituez votre rapport grâce à un système de drag-and-drop et finalisez-le entièrement pour conclure l’enquête !",
+    description: "Une Masc-Arade Macabre est un jeu d’enquête point-and-click. « Alors que la pièce Une Masc-Arade Macabre se joue ce soir, un drame survient. Saurez-vous percer le mystère qui l’entoure ? » Plongé au cœur d’un meurtre énigmatique, vous incarnez l’enquêteur chargé de reconstituer la scène et de découvrir ce qui s’est réellement passé cette soirée-là. \n Ce projet a été réalisé en duo, avec FFenril. \n Le gameplay tourne autour d’un système d’exploration de la scène de crime, où chaque indice, objet cliquable vous apporte des informations, dans lesquelles nous pouvons récupérer des mots pour avancer notre enquête. \n Avec ces mots, vous devez reconstituer votre rapport de police grâce à un système de drag-and-drop. Le but du jeu est de le finaliser entièrement pour lever le voile sur cette enquête.",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
-    tags: ["Illustration", "UI/UX"],
+    tags: ["UI / UX", "Illustration"],
     
     // Liens externes
     links: [
@@ -119,7 +119,7 @@ export const projects = [
     id: "9",
     title: "Le Coin des Barons",
     subtitle: "Communication visuelle, design graphique et direction artistique, 2024-2026",
-    description: "Pendant deux ans, j’ai contribué à la communication du Coin des Barons en concevant différents supports visuels pour les boutiques, le merchandising et les événements. J’ai participé à l’évolution de l’identité graphique de la marque et créé des contenus digitaux pour les réseaux sociaux. \n Ce travail s’est accompagné d’échanges réguliers avec les équipes boutiques afin de développer des supports adaptés aux besoins marketing et à l’animation de la communauté. \n J’ai conçu sur Figma un système de templates pour les réseaux sociaux, pensé pour être facilement déclinable et utilisé par les équipes. Ces supports sont encore utilisés aujourd’hui dans la communication de la marque. ",
+    description: "Pendant 2 ans, j’ai participé activement à la communication du Coin des Barons, en tant que Chargée de Communication 360°. \n J’ai participé à l’évolution de l’identité graphique de la marque et créé des contenus digitaux pour les réseaux sociaux. \n J’ai conçu différents supports visuels et print pour les boutiques, le merchandising et les événements. \n Ancrée dans une petite équipe, nous étions en échanges directs avec les responsables de boutiques afin de développer des supports efficaces et adaptés aux besoins marketing et à l’animation de chaque communauté. \n \n J’ai conçu sur Figma un design system pour les réseaux sociaux, pensé pour être facilement déclinable et utilisé encore aujourd’hui par les nouvelles équipes.",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
     tags: ["Design graphique", "Communication", "Direction artistique", "Community management", "Print", "Merchandising", "Event","Illustration"],
@@ -186,10 +186,10 @@ export const projects = [
     id: "2",
     title: "Ou koné ?",
     subtitle: "Jeu de société, 2024",
-    description: "Ou Koné ? est mon projet de fin d’étude en direction artistique : la création complète d’une marque de jeu de société éducatif dédiée à la faune de l’île de La Réunion. Il mêle des univers qui me tiennent à cœur, illustration et engagement pédagogique, avec pour ambition de sensibiliser les plus jeunes à la biodiversité locale à travers le jeu. \n Ce projet constitue un développement de marque à 360°, construit à partir d’une analyse stratégique approfondie, puis de la conception d’une direction artistique complète, dans une logique de marque prête à être commercialisée. Une charte graphique complète ainsi qu’un dossier de synthèse regroupant l’ensemble de la stratégie ont été réalisés. \n Le jeu comprend 30 animaux répartis en trois catégories (eau, terre, air), illustrés dans un style semi-réaliste et kawaii, évoluant dans un univers végétal inspiré de la flore luxuriante réunionnaise. Ses mécaniques de jeu sont inspirées du principe du Qui est-ce ? : une approche simple de déduction qui permet aux enfants d’apprendre tout en s’amusant.",
+    description: "Ou Koné ? est mon projet de fin d’étude en direction artistique : la création complète d’une marque de jeu de société éducatif dédiée à la faune de l’île de La Réunion. Mêlant illustration et engagement pédagogique, il a pour ambition de sensibiliser les plus jeunes à la biodiversité locale. \n Ce projet est un développement de marque à 360°, construit à partir d’une analyse stratégique approfondie, puis de la conception d’une direction artistique et une charte graphique complète. Cela dans une logique de marque prête à être commercialisée. \n Le jeu comprend 30 animaux répartis en trois catégories (eau, terre, air), illustrés dans un style semi-réaliste et kawaii et, un univers végétal inspiré de la flore luxuriante réunionnaise. Les mécaniques de jeu reprennent celles du Qui est-ce ? : une approche simple de déduction qui permet aux enfants d’apprendre tout en s’amusant.",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
-    tags: ["Direction Artistique", "Branding", "Identité Visuelle", "Illustration", "Stratégie de marque", "UX Design", "Web Design", "Packaging", "Social Media Design"],
+    tags: ["Direction Artistique", "Branding", "Identité Visuelle", "Illustration", "Stratégie de marque", "UI / UX", "Web Design", "Packaging", "Social Media Design"],
     
     // Liens externes
     links: [
@@ -237,7 +237,7 @@ export const projects = [
     title: "Le Moulin des Grainettes",
     subtitle: "Jeu vidéo, 2024",
     // \n = espace \u00A0 = alinéa
-    description: "Le Moulin des Grainettes est un jeu narratif point and click inspiré du moulin de Fosseuse, où l’exploration des lieux est au cœur de l’expérience. \n\u00A0\u00A0\u00A0\u00A0À travers une ambiance mêlant humour et fantastique, le projet met en scène Jean, un cadre parisien bloqué en pleine campagne, contraint de collaborer avec de mystérieuses Grainettes pour redonner vie à un moulin abandonné. \n\u00A0\u00A0\u00A0\u00A0 Pensé comme une aventure introspective, le jeu articule narration et mécaniques autour de la notion de choix, invitant le joueur à explorer chaque pièce, rencontrer ses habitants et questionner, au fil d’une longue nuit, le rapport au travail, aux rêves oubliés et au mode de vie moderne. \n\n\n\u00A0\u00A0\u00A0\u00A0Il s’agit d’un projet semi-professionnel réalisé dans le cadre d’une collaboration avec Aurélie, propriétaire de Robin des Moulins, un lieu aménagé pour des séminaires au vert, des formations RSE et des retraites bien-être, ainsi qu’avec la formation IDE.",
+    description: "Le Moulin des Grainettes est un jeu narratif point-and-click, inspiré du moulin de Fosseuse.  \n À travers une ambiance mêlant humour et fantastique, le jeu met en scène Jean, un cadre parisien bloqué en pleine campagne, contraint de collaborer avec de mystérieuses Grainettes pour redonner vie à un moulin abandonné. Pensé comme une aventure introspective, le jeu s’articule autour de la narration et de la notion de choix, invitant le joueur à explorer chaque pièce, rencontrer ses habitants et se questionner, le temps d’une longue nuit.  \n Ce projet semi-professionnel a été réalisé dans le cadre d’une collaboration avec Aurélie, propriétaire de Robin des Moulins, un lieu aménagé pour des séminaires au vert, des formations RSE et des retraites bien-être, ainsi qu’avec la formation IDE.",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
     tags: ["Direction Artistique", "UI/UX", "Voice","Chara design"],
@@ -276,7 +276,7 @@ export const projects = [
     id: "4",
     title: "Projet en sérigraphie",
     subtitle: "Illustration et print, 2020",
-    description: "Projet Le Manchot Hardi – \n Création d’un magazine complet pour enfants, incluant histoire, bande dessinée, mini-jeux et articles scientifiques vulgarisés. L’ensemble a été imaginé, rédigé, illustré, imprimé et relié à la main en biochromie, pour offrir un objet à la fois ludique, pédagogique et artistique. \n\n\n  Projet Loup Garou – \n Redesign du jeu classique Loup Garou de Thiercelieux en biochromie, entièrement réalisé à la main. Chaque illustration et élément graphique a été repensé et stylisé, tout en respectant l’esprit du jeu original. ",
+    description: "Projet Le Manchot Hardi – \n Création d’un magazine complet pour enfants, incluant histoire, bande dessinée, mini-jeux et articles scientifiques vulgarisés. Ce projet a été imaginé, rédigé, illustré, imprimé et relié à la main en biochromie, pour offrir un objet à la fois ludique, pédagogique et artistique. \n\n\n  Projet Loup Garou – \n Redesign du jeu de société emblématique Les Loups-Garous de Thiercelieux. Entièrement réalisé à la main, en biochromie chaque illustration et élément graphique a été repensé et stylisé, tout en respectant l’esprit du jeu original. ",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
     tags: ["Illustration", "Print", "Narration"],
@@ -312,7 +312,7 @@ export const projects = [
     id: "5",
     title: "Motion Design",
     subtitle: "Quelques projets, 2024",
-    description: "Ces motion designs explorent différentes techniques à travers le rythme et le mouvement. En jouant sur la vitesse, la dynamique et la synchronisation avec la musique, j’expérimente une mise en tension visuelle rythmée, portée par un travail de fond et de forme, pensé pour faire sourire. Le traitement typographique, parfois lyrique, s’accorde à la musique afin de créer des compositions immersives. ",
+    description: "Ces motion designs explorent différentes techniques à travers le rythme et le mouvement. En jouant sur la vitesse, la dynamique et la synchronisation avec la musique, j’expérimente une mise en tension de fond et de forme, pensé pour procurer le sourire. Le traitement typographique, parfois lyrique, s’accorde sur la musique afin de créer des compositions immersives. ",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
     tags: ["Motion Design","Montage"],
@@ -351,7 +351,7 @@ export const projects = [
     id: "6",
     title: "Web Design",
     subtitle: "Prototypage et maquettes sur Figma, 2023-2024",
-    description: "J’ai réalisé ces projets de web design, du wireframe au prototypage sur Figma, pour répondre aux besoins clients au sein d’une agence d’influence. Ils concernaient des sites no code et WordPress, conçus en collaboration avec un développeur, avec une attention particulière portée à la hiérarchie de l’information et à la représentation de l’identité visuelle de chaque marque, afin de répondre au mieux au brief.",
+    description: "J’ai réalisé ces projets de web design, du wireframe au prototypage sur Figma, pour répondre à des besoins clients au sein d’une agence d’influence. Ils concernaient des sites no code et WordPress, conçus en collaboration avec un développeur, avec une attention particulière portée à la hiérarchie de l’information et à la représentation de l’identité visuelle de chaque marque, afin de répondre au mieux aux différents briefs.",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
     tags: ["Web Design", "UI/UX", "Wireframe"],
@@ -389,7 +389,7 @@ export const projects = [
     id: "7",
     title: "Projet artistique, La Mer",
     subtitle: "Stop motion et print, 2019",
-    description: "Ce projet d’édition réalisé en duo avec Vanille Manier-Panetier, prend la forme d’un court livre retraçant le processus créatif de notre stop motion en sel. \n La mer, douce et envoûtante mais empreinte de mélancolie, se déploie dans toute sa puissance et sa fragilité. Une animation en stop motion accompagne la musique de Nine Inch Nails - La Mer, créant une immersion poétique où les émotions se mêlent à l’écume des vagues. ",
+    description: "Ce projet d’édition réalisé en duo avec Vanille Manier-Panetier, prend la forme d’un court livre retraçant le processus créatif de notre stop motion en sel. \n La mer, douce, envoûtante mais empreinte de mélancolie, se déploie avec puissance. C'est une animation réalisée en stop motion, rythmée sur la musique de Nine Inch Nails - La Mer, créant une immersion poétique où les émotions se mêlent à l’écume des vagues. ",
     
     // Liste des étiquettes (tags) affichées en bas à gauche
     tags: ["Stop Motion", "Print"],

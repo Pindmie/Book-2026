@@ -139,10 +139,11 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
             <div className="flex-shrink-0 text-brand text-[clamp(0.9rem,1.6vh,0.95rem)] leading-snug text-justify whitespace-pre-line ovegit qsrflow-hidden" style={{ columnCount: 3, columnFill: "auto", columnGap: "40px", height: "150px", width: "100%", maxWidth: "1350px" }}>
               {project.description}
             </div>
-            <div className="mt-16 flex justify-between items-end pb-2 flex-shrink-0 mb-[5rem]">
+               
+            <div className="mt-16 flex justify-between items-end pb-2 flex-shrink-0 mb-[5rem]">              
               <div className="flex flex-wrap gap-2 max-w-[70%]">
                 {project.tags?.map((tag, i) => (
-                  <span key={i} className="px-4 py-1 rounded-full text-white text-[0.8rem] uppercase font-light" style={{ backgroundColor: "#d49cff" }}>{tag}</span>
+                  <span key={i} className="px-4 py-1 rounded-full text-white text-[1rem] uppercase font-light" style={{ backgroundColor: "#d49cff" }}>{tag}</span>
                 ))}
               </div>
               <div className="flex flex-col gap-1">
