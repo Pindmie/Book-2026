@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer utilities {
+  .force-mobile {
+    @apply max-w-[480px] mx-auto w-full;
+  }
+}
+
 @theme {
   /* On lie les couleurs Tailwind aux variables CSS */
   --color-brand: var(--brand-color);

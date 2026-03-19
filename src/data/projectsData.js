@@ -131,7 +131,7 @@ export const projects = [
 
     // Image de couverture (visible sur la page d'accueil)
     mainImage: { 
-      src:"/Le coin des barons/Le-Coin-des-Barons-1.webp",
+      src:"/Le coin des barons/Le-Coin-des-Barons-2.webp",
       ratio: "aspect-video",    // Format 16/9
     }, 
 
@@ -146,7 +146,7 @@ export const projects = [
         },
 
         { 
-        src: "/Le coin des barons/Le-Coin-des-Barons-2.webp", 
+        src: "/Le coin des barons/Le-Coin-des-Barons-1.webp", 
         ratio: "aspect-video",    // Format 16/9
         },
 

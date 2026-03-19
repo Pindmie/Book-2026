@@ -8,6 +8,7 @@ import ContactForm from "./ContactForm";
 import CustomScrollbar from "../components/ui/CustomScrollbar";
 import ThemeSwitch from "../components/ui/ThemeSwitch";
 
+
 const Home = () => {
   // Gestion de l'affichage des détails de projet et du formulaire de contact
   const [selectedId, setSelectedId] = useState(null);
@@ -40,7 +41,7 @@ const Home = () => {
   const project = projects.find(p => p.id === selectedId);
 
   return (
-    <div className="h-screen w-full flex flex-col overflow-hidden font-inter text-brand bg-white relative">
+    <div className="h-screen w-full flex flex-col overflow-hidden font-inter text-brand bg-white">
       
       <div className="flex-1 flex overflow-hidden">
         
@@ -209,11 +210,11 @@ const Home = () => {
                       <div 
                         key={p.id} 
                         onClick={() => setSelectedId(p.id)} 
-                        className="cursor-pointer h-[38vh] flex-none"
+                        className="cursor-pointer flex-none aspect-[4/3]"
                         style={{ 
                           width: isLarge 
-                            ? "calc(58% - 0.4vw)" 
-                            : "calc(42% - 0.4vw)"
+                            ? "calc(55% - 0.4vw)" 
+                            : "calc(45% - 0.4vw)"
                         }}
                       >
                         <div className="w-full h-full bg-gray-50 overflow-hidden border border-brand/10">
