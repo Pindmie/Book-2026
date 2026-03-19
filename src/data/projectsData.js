@@ -39,7 +39,7 @@ export const projects = [
       },
 
         { 
-        src: "public/Note to myself/Note to myself 1.webp", 
+        src: "/Note to myself/Note to myself 1.webp", 
         ratio: "aspect-video",    // Format 16/9
         },
 
