@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
 import ProjectDetail from "./pages/ProjectDetail";
 import CustomCursor from "./components/layout/CustomCursor";
+import BurgerMenu from "./pages/BurgerMenu";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -13,6 +14,8 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
+        {/* AJOUT DE LA ROUTE BURGER MENU */}
+        <Route path="/burger-menu" element={<BurgerMenu />} />
       </Routes>
     </AnimatePresence>
   );

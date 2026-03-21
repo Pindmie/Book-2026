@@ -7,12 +7,13 @@ import ProjectDetail from "./ProjectDetail";
 import ContactForm from "./ContactForm";
 import CustomScrollbar from "../components/ui/CustomScrollbar";
 import ThemeSwitch from "../components/ui/ThemeSwitch";
-
+import { useNavigate } from "react-router-dom"; // Pour le burger menu
 
 const Home = () => {
   // Gestion de l'affichage des détails de projet et du formulaire de contact
   const [selectedId, setSelectedId] = useState(null);
   const [showContact, setShowContact] = useState(false);
+  const navigate = useNavigate(); // Hook pour envoyer vers la page burger-menu
   
   // État pour suivre le thème actuel afin de switcher les fichiers SVG
   const [currentTheme, setCurrentTheme] = useState("light");
@@ -45,9 +46,9 @@ const Home = () => {
       
       <div className="flex-1 flex overflow-hidden">
         
-        {/* Panneau latéral gauche contenant la biographie */}
+        {/* Panneau latéral gauche contenant la biographie - MASQUÉ SUR MOBILE VIA hidden md:flex */}
         <motion.div 
-          className="flex h-full flex-shrink-0 z-50 relative"
+          className="hidden md:flex h-full flex-shrink-0 z-50 relative"
           animate={{ x: (selectedId || showContact) ? "-25rem" : 0 }}
           transition={sharedTransition}
         >
@@ -141,66 +142,97 @@ const Home = () => {
         </motion.div>
 
         {/* Zone centrale principale affichant la grille des travaux */}
-        <main className="flex-1 flex flex-col relative bg-white overflow-hidden z-10 pl-2">
-          
-          <div className="flex-1 flex flex-col min-w-0 h-full">
-            {/* Header de la grille */}
-            <motion.div 
-              layoutId="header-section"
-              transition={sharedTransition}
-              className="w-full h-[9vh] border-b-2 border-brand flex-shrink-0 relative flex items-center justify-between px-6"
+        <main className="flex-1 flex flex-col relative bg-white overflow-hidden z-10">
+          {/* --- NOUVELLE SECTION NAVIGATION MOBILE --- */}
+          <div className="md:hidden sticky top-0 z-[30] w-full bg-white border-b-2 border-brand px-4 py-2 flex items-center justify-between">
+            {/* GAUCHE : Portfolio + Switch */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-brand">Portfolio</span>
+              {/* On réutilise ton switch ici, il fonctionnera de la même manière que sur PC */}
+              <div className="scale-50 origin-left"> 
+                <ThemeSwitch />
+              </div>
+            </div>
+
+            {/* DROITE : À propos + SVG Burger (Cliquable) */}
+            <button 
+              onClick={() => navigate('/burger-menu')} 
+              className="flex items-center gap-2 group cursor-pointer"
             >
-              <div className="flex-1" />
-              
-              <AnimatePresence mode="wait">
-                {(!selectedId && !showContact) && (
-                  <div key="header-container" className="flex items-center justify-center">
-                    
-                    <img 
+              <span className="text-xs text-brand">À propos</span>
+              {/* Affichage du SVG selon le thème (assure-toi que les noms de fichiers correspondent) */}
+              <img 
+                src={currentTheme === "dark" ? "/Picto_burger_1_dark.svg" : "/Picto_burger_1.svg"} 
+                alt="Menu" 
+                className="w-5 h-5 object-contain"
+              />
+            </button>
+          </div>
+
+          <div className="flex-1 flex flex-col min-w-0 h-full">
+            {/* Header de la grille - STICKY POUR MOBILE VIA sticky top-0 bg-white z-20 */}
+            <motion.div 
+                layoutId="header-section"
+                transition={sharedTransition}
+                className="sticky top-0 w-full h-[9vh] md:border-b-2 border-brand flex-shrink-0 bg-white z-20 flex items-center justify-between px-6"
+              >
+                <div className="flex-1">
+                  {/* Étoile gauche mobile */}
+                  <img 
                     src={currentTheme === "dark" ? "/Etoile_mobile_2_dark.svg" : "/Etoile_mobile_2.svg"} 
                     alt="" 
                     className="h-[4vh] object-contain pointer-events-none absolute left-4 block md:hidden"
-                     />
+                  />
+                </div>
+                
+                <AnimatePresence mode="wait">
+                  {(!selectedId && !showContact) && (
+                    <div key="header-container" className="flex items-center justify-center">
+                      <img 
+                        src={currentTheme === "dark" ? "/illu-header-dark.svg" : "/illu-header-main.svg"} 
+                        alt="" 
+                        className="h-[2.5vh] object-contain pointer-events-none" 
+                      />
+                    </div>
+                  )}
+                </AnimatePresence>
 
+                <div className="flex-1 flex justify-end items-center gap-3">
+                  {/* AJOUT DE L'ÉTOILE À DROITE POUR LE MOBILE */}
+                  {(!selectedId && !showContact) && (
                     <img 
-                      src={currentTheme === "dark" ? "/illu-header-dark.svg" : "/illu-header-main.svg"} 
+                      src={currentTheme === "dark" ? "/Etoile_mobile_dark.svg" : "/Etoile_mobile.svg"} 
                       alt="" 
-                      className="h-[2.5vh] object-contain pointer-events-none" 
+                      className="h-[4vh] object-contain pointer-events-none absolute right-4 block md:hidden"
                     />
-                    <img 
-                    src={currentTheme === "dark" ? "/Etoile_mobile_dark.svg" : "/Etoile_mobile.svg"} 
-                    alt="" 
-                    className="h-[4vh] object-contain pointer-events-none absolute right-4 block md:hidden" 
-                     />
+                  )}
 
-                  </div>
-                )}
-
-              </AnimatePresence>
-
-              <div className="flex-1 flex justify-end items-center gap-3">
-                 <AnimatePresence>
-                   {(!selectedId && !showContact) && (
-                     <motion.div 
+                  {/* RÉINTÉGRATION DU BLOC MODE + SWITCH POUR PC */}
+                  <AnimatePresence>
+                    {(!selectedId && !showContact) && (
+                      <motion.div 
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0 }}
-                        className="flex items-center gap-2"
-                     >
+                        // hidden md:flex garantit que ce bloc n'apparaît QUE sur PC
+                        className="hidden md:flex items-center gap-2"
+                      >
                         <span className="text-[14px] font-bold uppercase tracking-normal text-brand">Mode</span>
                         <ThemeSwitch />
-                     </motion.div>
-                   )}
-                 </AnimatePresence>
-              </div>
-            </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+
             
             <div className="flex-1 flex flex-row overflow-hidden min-h-0">
               <div 
                 ref={scrollContainerRef}
                 className="flex-1 overflow-y-auto no-scrollbar"
               >
-                <div className="flex flex-wrap gap-[0.8vw]">
+                {/* GRILLE : Passage en flex-col par défaut, md:flex-row md:flex-wrap sur PC */}
+                <div className="flex flex-col px-3 md:px-0 md:flex-row md:flex-wrap gap-[0.8vw]">
                   {projects.map((p, index) => {
                     const isEvenRow = Math.floor(index / 2) % 2 === 0;
                     const isFirstInRow = index % 2 === 0;
@@ -210,11 +242,15 @@ const Home = () => {
                       <div 
                         key={p.id} 
                         onClick={() => setSelectedId(p.id)} 
-                        className="cursor-pointer flex-none aspect-[4/3]"
+                        className="cursor-pointer flex-none aspect-[4/3] w-full md:w-auto"
+                        /* TES VALEURS D'ORIGINE :
+                           Mobile : w-full
+                           PC : Tes calculs calc(55%...) et calc(45%...)
+                        */
                         style={{ 
-                          width: isLarge 
-                            ? "calc(55% - 0.4vw)" 
-                            : "calc(45% - 0.4vw)"
+                          width: (typeof window !== 'undefined' && window.innerWidth < 768)
+                            ? "100%"
+                            : (isLarge ? "calc(55% - 0.4vw)" : "calc(45% - 0.4vw)")
                         }}
                       >
                         <div className="w-full h-full bg-gray-50 overflow-hidden border border-brand/10">
@@ -224,25 +260,17 @@ const Home = () => {
                             layoutId={`img-${p.id}`}
                             src={p.mainImage.src} 
                             initial={false}
-                            className="w-full h-full object-cover origin-center"
+                            className="w-full h-full object-cover origin-center border-2 border-brand md:border-hidden"
                           />
                         </div>
                       </div>
                     );
                   })}
                 </div>
-              </div>
 
-              {!selectedId && (
-                <div className="w-[25px] flex-shrink-0 border-l-2 border-brand bg-white h-full overflow-hidden">
-                   <CustomScrollbar scrollRef={scrollContainerRef} />
-                </div>
-              )}
-            </div>
-
-            <AnimatePresence mode="wait">
-              {(!selectedId && !showContact) && (
-                <div key="footer-container" className="w-full h-[8vh] flex items-center justify-center border-t-2 border-brand flex-shrink-0 px-[4vh]">
+                          {/* NOUVEAU : Footer Mobile (apparaît uniquement après le scroll de la grille) */}
+              {!selectedId && !showContact && (
+                <div className="md:hidden w-full h-[8vh] flex items-center justify-center border-t-2 border-brand flex-shrink-0 px-[4vh] mt-4">
                   <img 
                     src={currentTheme === "dark" ? "/illu-footer-dark.svg" : "/illu-footer-main.svg"} 
                     alt="" 
@@ -250,11 +278,34 @@ const Home = () => {
                   />
                 </div>
               )}
-            </AnimatePresence>
+
+              </div>
+
+              {!selectedId && (
+                /* Barre de défilement masquée sur mobile */
+                <div className="hidden md:block w-[25px] flex-shrink-0 border-l-2 border-brand bg-white h-full overflow-hidden">
+                   <CustomScrollbar scrollRef={scrollContainerRef} />
+                </div>
+              )}
+            </div>
+
+        {/* Ce footer reste fixe en bas de l'écran, uniquement sur PC */}
+        <AnimatePresence mode="wait">
+          {(!selectedId && !showContact) && (
+            <div key="footer-container" className="hidden md:flex w-full h-[8vh] items-center justify-center border-t-2 border-brand flex-shrink-0 px-[4vh]">
+              <img 
+                src={currentTheme === "dark" ? "/illu-footer-dark.svg" : "/illu-footer-main.svg"} 
+                alt="" 
+                className="w-full h-[2.5vh] object-contain" 
+              />
+            </div>
+          )}
+        </AnimatePresence>
           </div>
         </main>
 
-        <div className="h-full z-40 w-[10vw] flex-shrink-0">
+        {/* Colonne Pattern de droite : réduite sur mobile via w-[5vw] */}
+        <div className="hidden md:block h-full z-40 w-[5vw] md:w-[10vw] flex-shrink-0">
           <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l-2 border-brand" />
         </div>
       </div>
@@ -273,7 +324,7 @@ const Home = () => {
       </AnimatePresence>
       
 
-      <div className="relative z-[100] border-t-2 border-brand">
+      <div className="hidden md:block relative z-[100] border-t-2 border-brand">
         <ScrollingBanner />
       </div>
     </div>

@@ -1,6 +1,9 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PatternColumn from "../components/ui/PatternColumn";
+import ThemeSwitch from "../components/ui/ThemeSwitch";
+import HeaderSimple from "../components/ui/HeaderSimple";
 
 const GalleryItem = ({ item }) => {
   const [isMuted, setIsMuted] = useState(true);
@@ -23,7 +26,7 @@ const GalleryItem = ({ item }) => {
             <span className="w-4 h-4 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="5.5" cy="5.5" r="5.5" fill="currentColor"/>
-                <path d="M9 5.75004C8.99949 6.19105 8.88391 6.62429 8.66468 7.00694C8.44546 7.3896 8.13018 7.70843 7.75 7.93192C7.63615 7.9886 7.50498 7.99977 7.38319 7.96316C7.2614 7.92654 7.15813 7.84489 7.09442 7.73482C7.03071 7.62475 7.01133 7.49454 7.04023 7.37069C7.06914 7.24684 7.14415 7.13866 7.25 7.06817C7.47923 6.93286 7.6692 6.74012 7.80118 6.50896C7.93316 6.2778 8.00258 6.01622 8.00258 5.75004C8.00258 5.48386 7.93316 5.22228 7.80118 4.99113C7.6692 4.75997 7.47923 4.56722 7.25 4.43192C7.14415 4.36142 7.06914 4.25324 7.04023 4.12939C7.01133 4.00554 7.03071 3.87533 7.09442 3.76526C7.15813 3.6552 7.2614 3.57355 7.38319 3.53693C7.50498 3.50031 7.63615 3.51148 7.75 3.56817C8.13018 3.79166 8.44546 4.11049 8.66468 4.49315C8.88391 4.8758 8.99949 5.30904 9 5.75004ZM5.69125 2.53817C5.5999 2.50027 5.49936 2.49031 5.40235 2.50956C5.30534 2.52881 5.21621 2.57639 5.14625 2.64629L3.79313 4.00004H2.5C2.36739 4.00004 2.24021 4.05272 2.14645 4.14649C2.05268 4.24026 2 4.36743 2 4.50004V7.00004C2 7.13265 2.05268 7.25983 2.14645 7.3536C2.24021 7.44737 2.36739 7.50004 2.5 7.50004H3.79313L5.14625 8.85379C5.21618 8.9238 5.3053 8.97148 5.40235 8.99081C5.49939 9.01013 5.59998 9.00023 5.6914 8.96235C5.78281 8.92448 5.86092 8.86033 5.91586 8.77803C5.9708 8.69574 6.00008 8.59899 6 8.50004V3.00004C5.99998 2.90115 5.97064 2.80449 5.91568 2.72228C5.86072 2.64006 5.78262 2.57599 5.69125 2.53817Z" fill="white"/>
+                <path d="M9 5.75004C8.99949 6.19105 8.88391 6.62429 8.66468 7.00694C8.44546 7.3896 8.13018 7.70843 7.75 7.93192C7.63615 7.9886 7.50498 7.99977 7.38319 7.96316C7.2614 7.92654 7.15813 7.84489 7.09442 7.73482C7.03071 7.62475 7.01133 7.49454 7.04023 4.12939C7.01133 4.00554 7.03071 3.87533 7.09442 3.76526C7.15813 3.6552 7.2614 3.57355 7.38319 3.53693C7.50498 3.50031 7.63615 3.51148 7.75 3.56817C8.13018 3.79166 8.44546 4.11049 8.66468 4.49315C8.88391 4.8758 8.99949 5.30904 9 5.75004ZM5.69125 2.53817C5.5999 2.50027 5.49936 2.49031 5.40235 2.50956C5.30534 2.52881 5.21621 2.57639 5.14625 2.64629L3.79313 4.00004H2.5C2.36739 4.00004 2.24021 4.05272 2.14645 4.14649C2.05268 4.24026 2 4.36743 2 4.50004V7.00004C2 7.13265 2.05268 7.25983 2.14645 7.3536C2.24021 7.44737 2.36739 7.50004 2.5 7.50004H3.79313L5.14625 8.85379C5.21618 8.9238 5.3053 8.97148 5.40235 8.99081C5.49939 9.01013 5.59998 9.00023 5.6914 8.96235C5.78281 8.92448 5.86092 8.86033 5.91586 8.77803C5.9708 8.69574 6.00008 8.59899 6 8.50004V3.00004C5.99998 2.90115 5.97064 2.80449 5.91568 2.72228C5.86072 2.64006 5.78262 2.57599 5.69125 2.53817Z" fill="white"/>
               </svg>
             </span>
           )}
@@ -39,17 +42,34 @@ const GalleryItem = ({ item }) => {
 };
 
 const ProjectDetail = ({ project, onClose, sharedTransition }) => {
+  const navigate = useNavigate();
   const carouselRef = useRef(null);
   const [width, setWidth] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [currentTheme, setCurrentTheme] = useState("light");
+  const [activeIndex, setActiveIndex] = useState(0);
 
+  const allItems = [project.mainImage, ...(project.gallery || [])];
   const x = useMotionValue(0);
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const theme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      setCurrentTheme(theme);
+    };
+    updateTheme();
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = x.on("change", (latest) => {
       setCanScrollLeft(latest < -10);
       setCanScrollRight(latest > -width + 10);
+      const index = Math.round(Math.abs(latest) / (window.innerWidth * 0.8));
+      setActiveIndex(index);
     });
     return () => unsubscribe();
   }, [width]);
@@ -74,14 +94,34 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
   return (
     <motion.div 
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-      className="fixed top-0 right-0 left-[8px] bottom-0 z-40 bg-white flex overflow-hidden font-inter"
+      className="fixed top-0 right-0 left-0 md:left-[8px] bottom-0 z-40 bg-white flex overflow-hidden font-inter"
     >
-      <div className="flex-1 flex flex-col min-w-0 h-full">
-        {/* MODIF ICI : Hauteur 9vh, bordure-2 et flex center */}
+      <div className="flex-1 flex flex-col min-w-0 h-full relative">
+        
+        {/* --- NAVIGATION MOBILE (Portfolio + Burger) --- */}
+        <div className="md:hidden sticky top-0 z-[30] w-full bg-white border-b-2 border-brand px-4 py-2 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand">Portfolio</span>
+            <div className="scale-50 origin-left flex items-center"> 
+              <ThemeSwitch />
+            </div>
+          </div>
+          <button onClick={() => navigate('/burger-menu')} className="flex items-center gap-2 group cursor-pointer">
+            <span className="text-xs text-brand">À propos</span>
+            <img src={currentTheme === "dark" ? "/Picto_burger_1_dark.svg" : "/Picto_burger_1.svg"} alt="Menu" className="w-5 h-5 object-contain" />
+          </button>
+        </div>
+
+        {/* --- BANNIÈRE ÉTOILES MOBILE --- */}
+        <div className="md:hidden">
+          <HeaderSimple currentTheme={currentTheme} />
+        </div>
+
+        {/* --- SECTION RETOUR (TON CODE D'ORIGINE) --- */}
         <motion.div 
           layoutId="header-section" 
           transition={sharedTransition} 
-          className="w-full h-[9vh] border-b-2 border-brand flex-shrink-0 relative flex items-center"
+          className="w-full md:h-[9vh] md:border-b-2 border-brand flex-shrink-0 relative flex items-center bg-white z-20 py-2 md:py-0"
         >
           <button 
             onClick={onClose} 
@@ -94,24 +134,42 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
           </button>
         </motion.div>
 
-        <main className="flex-1 flex flex-col pl-[4vh] pr-[4vh] pt-[1vh] bg-white overflow-hidden relative">
-          <div ref={carouselRef} className="flex-shrink-0 mb-[4vh] h-[35vh] overflow-hidden">
-            <motion.div 
-              drag="x"
-              style={{ x }}
-              dragConstraints={{ right: 0, left: -width }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="flex gap-[0.5vw] h-full cursor-grab active:cursor-grabbing"
-            >
-              <div className={`h-full ${project.mainImage.ratio} flex-shrink-0 overflow-hidden bg-gray-100`}>
-                <motion.img layoutId={`img-${project.id}`} src={project.mainImage.src} transition={sharedTransition} initial={false} className="w-full h-full object-cover pointer-events-none" />
-              </div>
-              {project.gallery && project.gallery.map((item, index) => (
-                <GalleryItem key={index} item={item} />
+        {/* --- CONTENU --- */}
+        <main className="flex-1 flex flex-col pt-[1vh] bg-white overflow-y-auto md:overflow-hidden relative no-scrollbar">
+          
+          {/* CAROUSEL AVEC EFFET PEEK ET DOTS */}
+          <div className="flex-shrink-0 mb-[2vh] relative">
+            <div ref={carouselRef} className="h-[35vh] md:overflow-hidden px-0">
+              <motion.div 
+                drag="x"
+                style={{ x }}
+                dragConstraints={{ right: 0, left: -width }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="flex gap-[2vw] md:gap-[0.5vw] h-full cursor-grab active:cursor-grabbing"
+              >
+                <div className={`h-full ${project.mainImage.ratio} flex-shrink-0 overflow-hidden bg-gray-100`}>
+                  <motion.img layoutId={`img-${project.id}`} src={project.mainImage.src} transition={sharedTransition} initial={false} className="w-full h-full object-cover pointer-events-none" />
+                </div>
+                {project.gallery && project.gallery.map((item, index) => (
+                  <GalleryItem key={index} item={item} />
+                ))}
+              </motion.div>
+            </div>
+
+            {/* DOTS MOBILE */}
+            <div className="flex md:hidden justify-center gap-2 mt-4">
+              {allItems.map((_, i) => (
+                <div 
+                  key={i}
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                    activeIndex === i ? "bg-brand w-4" : "bg-brand/30"
+                  }`}
+                />
               ))}
-            </motion.div>
+            </div>
           </div>
 
+          {/* FLÈCHES DE NAVIGATION (Gardées sur PC et Mobile) */}
           <div className="absolute right-4 top-[45vh] -translate-y-1/2 z-50 flex gap-2">
             <button 
               onClick={() => scrollSlider("prev")}
@@ -131,22 +189,33 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
             </button>
           </div>
 
-          <div className="flex-1 flex flex-col mx-[5vw] min-h-0">
-            <div className="flex-shrink-0 mb-4">
+          {/* INFOS TEXTUELLES */}
+          <div className="px-6 md:px-0 flex-1 flex flex-col md:mx-[5vw] min-h-0 md:pl-[4vh] md:pr-[4vh]">
+            <div className="flex-shrink-0 mb-4 mt-6 md:mt-0">
               <h1 className="text-[clamp(1.5rem,3vh,2.5rem)] font-bold text-brand leading-none">{project.title}</h1>
               {project.subtitle && <h2 className="text-[clamp(0.9rem,2vh,1.1rem)] text-accent italic mt-1">{project.subtitle}</h2>}
             </div>
-            <div className="flex-shrink-0 text-brand text-[clamp(0.9rem,1.6vh,0.95rem)] leading-snug text-justify whitespace-pre-line ovegit qsrflow-hidden" style={{ columnCount: 3, columnFill: "auto", columnGap: "40px", height: "150px", width: "100%", maxWidth: "1350px" }}>
+
+            <div 
+              className="flex-shrink-0 text-brand text-[clamp(0.9rem,1.6vh,0.95rem)] leading-snug text-justify whitespace-pre-line overflow-visible" 
+              style={{ 
+                columnCount: window.innerWidth < 768 ? 1 : 3, 
+                columnFill: "auto", 
+                columnGap: "40px", 
+                width: "100%", 
+                maxWidth: "1350px" 
+              }}
+            >
               {project.description}
             </div>
                
-            <div className="mt-16 flex justify-between items-end pb-2 flex-shrink-0 mb-[5rem]">              
-              <div className="flex flex-wrap gap-2 max-w-[70%]">
+            <div className="mt-8 md:mt-16 flex flex-col md:flex-row justify-between items-start md:items-end pb-2 flex-shrink-0 mb-[5rem] gap-6">              
+              <div className="flex flex-wrap gap-2 max-w-full md:max-w-[70%]">
                 {project.tags?.map((tag, i) => (
-                  <span key={i} className="px-4 py-1 rounded-full text-white text-[1rem] uppercase font-light" style={{ backgroundColor: "#d49cff" }}>{tag}</span>
+                  <span key={i} className="px-4 py-1 rounded-full text-white text-[0.85rem] md:text-[1rem] uppercase font-light" style={{ backgroundColor: "#d49cff" }}>{tag}</span>
                 ))}
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 w-full md:w-auto">
                 {project.links?.map((link, i) => (
                   <a key={i} href={link.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-accent hover:opacity-70 transition-opacity text-[0.9rem]">
                     <img src="/arrow-accent.svg" alt="" className="w-[1.5vh] h-[1.5vh]" />
@@ -155,11 +224,20 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
                 ))}
               </div>
             </div>
+
+            {/* FOOTER STICKY MOBILE PLEIN ÉCRAN */}
+            <div className="md:hidden sticky bottom-0 left-[-24px] right-[-24px] w-[calc(100%+48px)] h-[8vh] flex items-center justify-center border-t-2 border-brand bg-white z-30 mt-auto">
+              <img 
+                src={currentTheme === "dark" ? "/illu-footer-dark.svg" : "/illu-footer-main.svg"} 
+                alt="" 
+                className="w-full h-[2.5vh] object-contain" 
+              />
+            </div>
           </div>
         </main>
       </div>
 
-      <div className="h-full z-40 w-[10vw] flex-shrink-0">
+      <div className="hidden md:block h-full z-40 w-[10vw] flex-shrink-0">
         <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l-2" />
       </div>
     </motion.div>

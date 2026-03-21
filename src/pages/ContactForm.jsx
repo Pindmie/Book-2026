@@ -39,18 +39,12 @@ const ContactForm = ({ onClose, sharedTransition }) => {
 
   return (
     <motion.div 
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      exit={{ opacity: 0 }} 
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
       className="fixed top-0 right-0 left-0 bottom-0 z-[60] bg-white flex overflow-hidden font-inter text-brand"
     >
-      {/* LA CORRECTION : 
-          On met le panneau en absolute + z-50. 
-          Il coulisse par dessus le reste, laissant la ligne visible à 8px du bord gauche.
-      */}
+      {/* Panneau latéral (PC uniquement via hidden md:flex) */}
       <motion.div 
-        className="absolute top-0 left-0 h-full flex flex-shrink-0 z-50 pointer-events-none"
+        className="hidden md:flex absolute top-0 left-0 h-full flex-shrink-0 z-50 pointer-events-none"
         initial={{ x: 0 }}
         animate={{ x: "-25rem" }} 
         transition={sharedTransition}
@@ -61,15 +55,13 @@ const ContactForm = ({ onClose, sharedTransition }) => {
         </div>
       </motion.div>
 
-      {/* Le bloc Formulaire commence maintenant bien à 8px du bord gauche 
-          pour s'aligner sur la ligne de motifs, et prend tout le reste.
-      */}
-      <div className="flex-1 flex flex-col min-w-0 h-full ml-[8px]">
+      {/* Main Container */}
+      <div className="flex-1 flex flex-col min-w-0 h-full md:ml-[8px]">
         {/* Header */}
         <motion.div 
           layoutId="header-section" 
           transition={sharedTransition} 
-          className="w-full h-[9vh] border-b-2 border-brand flex-shrink-0 relative flex items-center justify-between px-6"
+          className="w-full h-[9vh] border-b-2 border-brand flex-shrink-0 relative flex items-center justify-between px-6 bg-white z-10"
         >
           <button 
             onClick={onClose} 
@@ -87,7 +79,7 @@ const ContactForm = ({ onClose, sharedTransition }) => {
           </div>
         </motion.div>
 
-        <main className="flex-1 flex flex-col bg-white no-scrollbar items-center justify-center py-[5vh] px-[4vh]">
+        <main className="flex-1 flex flex-col bg-white overflow-y-auto no-scrollbar items-center justify-center py-[5vh] px-[4vh]">
           <AnimatePresence mode="wait">
             {status !== "success" ? (
               <motion.div 
@@ -95,45 +87,48 @@ const ContactForm = ({ onClose, sharedTransition }) => {
                 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
                 className="w-full max-w-[1250px] flex flex-col items-center"
               >
-                <div className="flex flex-col items-center gap-4 mb-10 text-center">
-                  <img src={currentTheme === "dark" ? "/top-form-dark.svg" : "/top-form-main.svg"} alt="" className="h-[10vh] object-contain" />
+                {/* TITRE ET SVG : Taille réduite sur mobile (scale-75 ou 50%) */}
+                <div className="flex flex-col items-center gap-4 mb-10 text-center scale-75 md:scale-100 origin-center">
+                  <img src={currentTheme === "dark" ? "/top-form-dark.svg" : "/top-form-main.svg"} alt="" className="h-[8vh] md:h-[10vh] object-contain" />
                   <div className="flex items-center gap-3">
-                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[2.5vh] object-contain" />
-                     <h1 className="text-5xl font-bold uppercase leading-none text-center">Donnez vie à votre projet !</h1>
-                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[2.5vh] object-contain -scale-x-100" />
+                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[1.5vh] md:h-[2.5vh] object-contain" />
+                     <h1 className="text-2xl md:text-5xl font-bold uppercase leading-none text-center px-2">Donnez vie à votre projet !</h1>
+                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[1.5vh] md:h-[2.5vh] object-contain -scale-x-100" />
                   </div>
-                  <p className="text-brand text-xl font-medium italic tracking-wider">✦˙⋆˚ Partagez vos idées et créons-les ensemble ˚⋆˙✦</p>
+                  <p className="text-brand text-sm md:text-xl font-medium italic tracking-wider">✦˙⋆˚ Partagez vos idées et créons-les ensemble ˚⋆˙✦</p>
                 </div>
 
-                <form ref={form} onSubmit={sendEmail} className="w-full flex flex-col gap-6 px-20">
-                  <div className="flex gap-6 w-full">
-                    <input type="text" name="name" required placeholder="Nom, Prénom*" className="text-brand placeholder:text-silver placeholder:italic flex-1 border-2 border-brand p-5 focus:outline-none transition-all text-lg" />
-                    <input type="email" name="email" required placeholder="Adresse mail (e-mail)*" className="text-brand placeholder:text-silver placeholder:italic flex-1 border-2 border-brand p-5 focus:outline-none transition-all text-lg" />
+                <form ref={form} onSubmit={sendEmail} className="w-full flex flex-col gap-6 px-0 md:px-20">
+                  {/* INPUTS : Flex-col sur mobile, Flex-row sur PC */}
+                  <div className="flex flex-col md:flex-row gap-6 w-full">
+                    <input type="text" name="name" required placeholder="Nom, Prénom*" className="text-brand placeholder:text-silver placeholder:italic flex-1 border-2 border-brand p-4 md:p-5 focus:outline-none transition-all text-base md:text-lg bg-transparent" />
+                    <input type="email" name="email" required placeholder="Adresse mail (e-mail)*" className="text-brand placeholder:text-silver placeholder:italic flex-1 border-2 border-brand p-4 md:p-5 focus:outline-none transition-all text-base md:text-lg bg-transparent" />
                   </div>
                   <div className="flex flex-col">
-                    <textarea name="message" required rows="7" placeholder="Votre message ici* ദ്ദി(˵ •̀ ᴗ - ˵ )˚⊹" className="text-brand placeholder:text-silver placeholder:italic flex-1 border-2 border-brand p-5 focus:outline-none transition-all text-lg" />
-                    <span className="italic text-sm opacity-70 self-end mt-2 text-silver">Champs marqués d’une * sont obligatoires.</span>
+                    <textarea name="message" required rows="6" placeholder="Votre message ici* ദ്ദി(˵ •̀ ᴗ - ˵ )˚⊹" className="text-brand placeholder:text-silver placeholder:italic flex-1 border-2 border-brand p-4 md:p-5 focus:outline-none transition-all text-base md:text-lg bg-transparent" />
+                    <span className="italic text-[10px] md:text-sm opacity-70 self-end mt-2 text-silver text-right">Champs marqués d’une * sont obligatoires.</span>
                   </div>
                   <div className="flex flex-col items-center gap-4 mt-4">
                     {status === "sending" ? (
-                      <span className="font-bold text-xl animate-pulse">Mail en cours d'envoi...</span>
+                      <span className="font-bold text-lg md:text-xl animate-pulse">Mail en cours d'envoi...</span>
                     ) : (
-                      <button type="submit" className="bg-brand text-white px-8 py-2 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-lg">
-                        Envoyer</button>
+                      <button type="submit" className="bg-brand text-white px-10 py-3 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-base md:text-lg">
+                        Envoyer
+                      </button>
                     )}
                   </div>
                 </form>
               </motion.div>
             ) : (
-              <motion.div key="success-content" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="w-full max-w-[1300px] flex flex-col items-center">
-                <img src={currentTheme === "dark" ? "/top-form-dark.svg" : "/top-form-main.svg"} alt="" className="h-[10vh] object-contain mb-4" />
-                <span className="text-6xl mb-6">ദ്ദി(˵ •̀ ᴗ - ˵ )˚⊹</span>
-                <div className="flex items-center gap-8 mb-4">
-                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[2.5vh] object-contain" />
-                     <h1 className="text-5xl font-bold uppercase leading-none text-center">Merci pour votre message !</h1>
-                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[2.5vh] object-contain -scale-x-100" />
+              <motion.div key="success-content" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="w-full max-w-[1300px] flex flex-col items-center text-center">
+                <img src={currentTheme === "dark" ? "/top-form-dark.svg" : "/top-form-main.svg"} alt="" className="h-[8vh] md:h-[10vh] object-contain mb-4" />
+                <span className="text-4xl md:text-6xl mb-6">ദ്ദി(˵ •̀ ᴗ - ˵ )˚⊹</span>
+                <div className="flex items-center gap-4 md:gap-8 mb-4">
+                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[1.5vh] md:h-[2.5vh] object-contain" />
+                     <h1 className="text-2xl md:text-5xl font-bold uppercase leading-none text-center">Merci !</h1>
+                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[1.5vh] md:h-[2.5vh] object-contain -scale-x-100" />
                 </div>
-                <p className="text-brand text-xl font-medium italic tracking-wider">✦˙⋆˚ Je reviendrai vers vous dans les plus brefs délais. ˚⋆˙✦</p>
+                <p className="text-brand text-sm md:text-xl font-medium italic tracking-wider">✦˙⋆˚ Je reviendrai vers vous rapidement. ˚⋆˙✦</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -144,8 +139,8 @@ const ContactForm = ({ onClose, sharedTransition }) => {
         </div>
       </div>
 
-      {/* Pattern de droite */}
-      <div className="h-full z-40 w-[10vw] flex-shrink-0">
+      {/* Pattern de droite (PC uniquement via hidden md:block) */}
+      <div className="hidden md:block h-full z-40 w-[10vw] flex-shrink-0">
         <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l-2 border-brand" />
       </div>
     </motion.div>
