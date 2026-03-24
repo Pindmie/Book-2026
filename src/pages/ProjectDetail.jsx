@@ -119,9 +119,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
 
         {/* --- SECTION RETOUR (TON CODE D'ORIGINE) --- */}
         <motion.div 
-          layoutId="header-section" 
-          transition={sharedTransition} 
-          className="w-full md:h-[9vh] md:border-b-2 border-brand flex-shrink-0 relative flex items-center bg-white z-20 py-2 md:py-0"
+            className="w-full md:h-[9vh] md:border-b-2 border-brand flex-shrink-0 relative flex items-center bg-white z-20 py-2 md:py-0"
         >
           <button 
             onClick={onClose} 
@@ -135,7 +133,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
         </motion.div>
 
         {/* --- CONTENU --- */}
-        <main className="flex-1 flex flex-col pt-[1vh] bg-white overflow-y-auto md:overflow-hidden relative no-scrollbar">
+        <main className="flex-1 flex flex-col pt-[1vh] bg-white overflow-y-auto md:overflow-hidden relative no-scrollbar pb-[8vh]">
           
           {/* CAROUSEL AVEC EFFET PEEK ET DOTS */}
           <div className="flex-shrink-0 mb-[2vh] relative">
@@ -170,44 +168,39 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
           </div>
 
           {/* FLÈCHES DE NAVIGATION (Gardées sur PC et Mobile) */}
-          <div className="absolute right-4 top-[45vh] -translate-y-1/2 z-50 flex gap-2">
-            <button 
-              onClick={() => scrollSlider("prev")}
-              className={`p-2 transition-all rounded-sm ${canScrollLeft ? "text-brand hover:text-accent cursor-pointer opacity-100" : "text-brand opacity-50 cursor-default"}`}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M8.35784 11.1113L15.2718 4L17 5.7775L10.9501 12L17 18.2225L15.2718 20L8.35784 12.8887C8.12872 12.653 8 12.3333 8 12C8 11.6667 8.12872 11.347 8.35784 11.1113Z" fill="currentColor"/>
-              </svg>
-            </button>
-            <button 
-              onClick={() => scrollSlider("next")}
-              className={`p-2 transition-all rounded-sm ${canScrollRight ? "text-brand hover:text-accent cursor-pointer opacity-100" : "text-brand opacity-50 cursor-default"}`}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M15.6422 12.8887L8.72819 20L7 18.2225L13.0499 12L7 5.7775L8.72819 4L15.6422 11.1112C15.8713 11.347 16 11.6667 16 12C16 12.3333 15.8713 12.653 15.6422 12.8887Z" fill="currentColor"/>
-              </svg>
-            </button>
-          </div>
+        <div className="absolute right-4 top-[55%] md:top-[45%] -translate-y-1/2 z-50 flex gap-2">
+          <button 
+            onClick={() => scrollSlider("prev")}
+            className={`p-2 transition-all rounded-sm ${canScrollLeft ? "text-brand hover:text-accent cursor-pointer opacity-100" : "text-brand opacity-50 cursor-default"}`}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M8.35784 11.1113L15.2718 4L17 5.7775L10.9501 12L17 18.2225L15.2718 20L8.35784 12.8887C8.12872 12.653 8 12.3333 8 12C8 11.6667 8.12872 11.347 8.35784 11.1113Z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button 
+            onClick={() => scrollSlider("next")}
+            className={`p-2 transition-all rounded-sm ${canScrollRight ? "text-brand hover:text-accent cursor-pointer opacity-100" : "text-brand opacity-50 cursor-default"}`}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M15.6422 12.8887L8.72819 20L7 18.2225L13.0499 12L7 5.7775L8.72819 4L15.6422 11.1112C15.8713 11.347 16 11.6667 16 12C16 12.3333 15.8713 12.653 15.6422 12.8887Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
 
           {/* INFOS TEXTUELLES */}
-          <div className="px-6 md:px-0 flex-1 flex flex-col md:mx-[5vw] min-h-0 md:pl-[4vh] md:pr-[4vh]">
+          <div className="px-6 md:px-0 flex-1 flex flex-col min-h-0 md:pl-[4vh] md:pr-[4vh] pt-6">
             <div className="flex-shrink-0 mb-4 mt-6 md:mt-0">
               <h1 className="text-[clamp(1.5rem,3vh,2.5rem)] font-bold text-brand leading-none">{project.title}</h1>
               {project.subtitle && <h2 className="text-[clamp(0.9rem,2vh,1.1rem)] text-accent italic mt-1">{project.subtitle}</h2>}
             </div>
 
-            <div 
-              className="flex-shrink-0 text-brand text-[clamp(0.9rem,1.6vh,0.95rem)] leading-snug text-justify whitespace-pre-line overflow-visible" 
-              style={{ 
-                columnCount: window.innerWidth < 768 ? 1 : 3, 
-                columnFill: "auto", 
-                columnGap: "40px", 
-                width: "100%", 
-                maxWidth: "1350px" 
-              }}
-            >
-              {project.description}
-            </div>
+           <div 
+            className="flex-shrink-0 text-brand text-[clamp(0.9rem,1.6vh,0.95rem)] leading-snug text-justify whitespace-pre-line overflow-visible
+                      columns-1 md:columns-3"
+            style={{ columnGap: "40px" }}
+          >
+            {project.description}
+          </div>
                
             <div className="mt-8 md:mt-16 flex flex-col md:flex-row justify-between items-start md:items-end pb-2 flex-shrink-0 mb-[5rem] gap-6">              
               <div className="flex flex-wrap gap-2 max-w-full md:max-w-[70%]">
@@ -226,13 +219,13 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
             </div>
 
             {/* FOOTER STICKY MOBILE PLEIN ÉCRAN */}
-            <div className="md:hidden sticky bottom-0 left-[-24px] right-[-24px] w-[calc(100%+48px)] h-[8vh] flex items-center justify-center border-t-2 border-brand bg-white z-30 mt-auto">
-              <img 
-                src={currentTheme === "dark" ? "/illu-footer-dark.svg" : "/illu-footer-main.svg"} 
-                alt="" 
-                className="w-full h-[2.5vh] object-contain" 
-              />
-            </div>
+            <div className="md:hidden bg-white w-full h-[2.5vh] flex items-center justify-center">
+  <img 
+    src={currentTheme === "dark" ? "/illu-footer-dark.svg" : "/illu-footer-main.svg"} 
+    className="h-auto max-h-[8vh] object-contain"
+    alt=""
+  />
+</div>
           </div>
         </main>
       </div>

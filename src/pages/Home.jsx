@@ -229,7 +229,7 @@ const Home = () => {
             <div className="flex-1 flex flex-row overflow-hidden min-h-0">
               <div 
                 ref={scrollContainerRef}
-                className="flex-1 overflow-y-auto no-scrollbar"
+                className="flex-1 overflow-y-auto no-scrollbar pb-[4vh]"
               >
                 {/* GRILLE : Passage en flex-col par défaut, md:flex-row md:flex-wrap sur PC */}
                 <div className="flex flex-col px-3 md:px-0 md:flex-row md:flex-wrap gap-[0.8vw]">

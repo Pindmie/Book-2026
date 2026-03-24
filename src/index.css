@@ -53,3 +53,15 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--brand-color) var(--bg-color);
 }
+
+
+.project-description {
+  column-count: 1;
+  column-gap: 40px; 
+}
+
+@media (min-width: 400px) {
+  .project-description {
+    column-count: 3 !important; 
+  }
+}
