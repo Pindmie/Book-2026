@@ -8,6 +8,8 @@ import ContactForm from "./ContactForm";
 import CustomScrollbar from "../components/ui/CustomScrollbar";
 import ThemeSwitch from "../components/ui/ThemeSwitch";
 import { useNavigate } from "react-router-dom"; // Pour le burger menu
+import MobileScrollToggle from "../components/ui/MobileScrollToggle.jsx";
+import MobileFooter from "../components/ui/MobileFooter";
 
 const Home = () => {
   // Gestion de l'affichage des détails de projet et du formulaire de contact
@@ -23,6 +25,7 @@ const Home = () => {
 
   // Configuration de la transition partagée entre les composants (panneaux et images)
   const sharedTransition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
+  
 
   // Surveillance du changement de thème via MutationObserver
   useEffect(() => {
@@ -56,7 +59,7 @@ const Home = () => {
             
             <div className="flex-shrink-0">
               <h1 className="text-[clamp(1rem,3vh,1.3rem)] font-bold leading-none">LOPES Léa-Anna</h1>
-              <h2 className="text-[clamp(0.85rem,2vh,1.125rem)] text-accent text-right">Bordeaux, France</h2>
+              <h3 className="text-[clamp(0.85rem,2vh,1.125rem)] text-accent text-right">Bordeaux, France</h3>
             </div>
 
             <div className="flex-1 flex flex-col justify-between min-h-0 pt-[4vh] pb-[2vh]">
@@ -147,27 +150,44 @@ const Home = () => {
           <div className="md:hidden sticky top-0 z-[30] w-full bg-white border-b-2 border-brand px-4 py-2 flex items-center justify-between">
             {/* GAUCHE : Portfolio + Switch */}
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-brand">Portfolio</span>
+              <span className="text-xs font-bold uppercase text-brand">Portfolio</span>
               {/* On réutilise ton switch ici, il fonctionnera de la même manière que sur PC */}
               <div className="scale-50 origin-left"> 
                 <ThemeSwitch />
               </div>
             </div>
 
-            {/* DROITE : À propos + SVG Burger (Cliquable) */}
-            <button 
-              onClick={() => navigate('/burger-menu')} 
-              className="flex items-center gap-2 group cursor-pointer"
-            >
-              <span className="text-xs text-brand">À propos</span>
-              {/* Affichage du SVG selon le thème (assure-toi que les noms de fichiers correspondent) */}
-              <img 
-                src={currentTheme === "dark" ? "/Picto_burger_1_dark.svg" : "/Picto_burger_1.svg"} 
-                alt="Menu" 
-                className="w-5 h-5 object-contain"
-              />
-            </button>
-          </div>
+        {/* DROITE : À propos + SVG Burger (Cliquable) */}
+        <button
+          onClick={() => navigate("/burger-menu")}
+          className="flex items-center gap-2 group cursor-pointer"
+        >
+          <span className="text-xs italic text-brand">À propos</span>
+
+          <motion.span
+            layoutId="mobile-menu-icon-wrap"
+            className="w-5 h-5 flex items-center justify-center"
+            initial={false}
+            animate={{ rotate: 0, scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 18
+            }}
+          >
+            <motion.img
+              layoutId="mobile-menu-icon"
+              src={
+                currentTheme === "dark"
+                  ? "/Picto_burger_1_dark.svg"
+                  : "/Picto_burger_1.svg"
+              }
+              alt="Menu"
+              className="w-5 h-5 object-contain"
+            />
+          </motion.span>
+        </button>
+        </div>
 
           <div className="flex-1 flex flex-col min-w-0 h-full">
             {/* Header de la grille - STICKY POUR MOBILE VIA sticky top-0 bg-white z-20 */}
@@ -176,12 +196,12 @@ const Home = () => {
                 transition={sharedTransition}
                 className="sticky top-0 w-full h-[9vh] md:border-b-2 border-brand flex-shrink-0 bg-white z-20 flex items-center justify-between px-6"
               >
-                <div className="flex-1">
+                <div className="flex-1 relative">
                   {/* Étoile gauche mobile */}
                   <img 
                     src={currentTheme === "dark" ? "/Etoile_mobile_2_dark.svg" : "/Etoile_mobile_2.svg"} 
                     alt="" 
-                    className="h-[4vh] object-contain pointer-events-none absolute left-4 block md:hidden"
+                    className="h-[4vh] object-contain pointer-events-none absolute top-1/2 -translate-y-1/2 block md:hidden"
                   />
                 </div>
                 
@@ -200,12 +220,14 @@ const Home = () => {
                 <div className="flex-1 flex justify-end items-center gap-3">
                   {/* AJOUT DE L'ÉTOILE À DROITE POUR LE MOBILE */}
                   {(!selectedId && !showContact) && (
+                  <div className="absolute right-4 flex flex-col items-center md:hidden">
                     <img 
                       src={currentTheme === "dark" ? "/Etoile_mobile_dark.svg" : "/Etoile_mobile.svg"} 
                       alt="" 
-                      className="h-[4vh] object-contain pointer-events-none absolute right-4 block md:hidden"
+                      className="h-[4vh] object-contain pointer-events-none"
                     />
-                  )}
+                  </div>
+                )}
 
                   {/* RÉINTÉGRATION DU BLOC MODE + SWITCH POUR PC */}
                   <AnimatePresence>
@@ -229,7 +251,7 @@ const Home = () => {
             <div className="flex-1 flex flex-row overflow-hidden min-h-0">
               <div 
                 ref={scrollContainerRef}
-                className="flex-1 overflow-y-auto no-scrollbar pb-[4vh]"
+                className="flex-1 overflow-y-auto no-scrollbar pb-[6vh]"
               >
                 {/* GRILLE : Passage en flex-col par défaut, md:flex-row md:flex-wrap sur PC */}
                 <div className="flex flex-col px-3 md:px-0 md:flex-row md:flex-wrap gap-[0.8vw]">
@@ -267,17 +289,12 @@ const Home = () => {
                     );
                   })}
                 </div>
-
-                          {/* NOUVEAU : Footer Mobile (apparaît uniquement après le scroll de la grille) */}
-              {!selectedId && !showContact && (
-                <div className="md:hidden w-full h-[8vh] flex items-center justify-center border-t-2 border-brand flex-shrink-0 px-[4vh] mt-4">
-                  <img 
-                    src={currentTheme === "dark" ? "/illu-footer-dark.svg" : "/illu-footer-main.svg"} 
-                    alt="" 
-                    className="w-full h-[2.5vh] object-contain" 
-                  />
-                </div>
-              )}
+                
+            {!selectedId && !showContact && (
+            <div className="md:hidden mt-6 pb-2">
+              <MobileFooter currentTheme={currentTheme} />
+            </div>
+           )}
 
               </div>
 
@@ -322,7 +339,10 @@ const Home = () => {
           <ContactForm onClose={() => setShowContact(false)} sharedTransition={sharedTransition} />
         )}
       </AnimatePresence>
-      
+
+        {!selectedId && !showContact && (
+  <MobileScrollToggle scrollRef={scrollContainerRef} bottomOffset="2rem" />
+        )}      
 
       <div className="hidden md:block relative z-[100] border-t-2 border-brand">
         <ScrollingBanner />

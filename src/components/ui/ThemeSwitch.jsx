@@ -27,10 +27,11 @@ const ThemeSwitch = () => {
       >
         {/* Pastille blanche avec animation de glissement */}
         <motion.div
-          className="bg-white w-4 h-4 rounded-full shadow-md"
-          animate={{ x: isDark ? 0 : 24 }}
-          transition={{ type: "spring", stiffness: 500, damping: 30 }}
-        />
+  className="bg-white w-4 h-4 rounded-full shadow-md"
+  initial={false}
+  animate={{ x: isDark ? 0 : 24 }}
+  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+/>
       </div>
     </div>
   );

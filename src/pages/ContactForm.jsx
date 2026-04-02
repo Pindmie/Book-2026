@@ -3,11 +3,13 @@ import { useState, useEffect, useRef } from "react";
 import PatternColumn from "../components/ui/PatternColumn";
 import ThemeSwitch from "../components/ui/ThemeSwitch";
 import emailjs from "@emailjs/browser";
+import MobileFooter from "../components/ui/MobileFooter";
 
 const ContactForm = ({ onClose, sharedTransition }) => {
   const form = useRef();
   const [currentTheme, setCurrentTheme] = useState("light");
   const [status, setStatus] = useState("idle");
+  const scrollAreaRef = useRef(null);
 
   useEffect(() => {
     const updateTheme = () => {
@@ -78,8 +80,8 @@ const ContactForm = ({ onClose, sharedTransition }) => {
             <ThemeSwitch />
           </div>
         </motion.div>
-
-        <main className="flex-1 flex flex-col bg-white overflow-y-auto no-scrollbar items-center justify-center py-[5vh] px-[4vh]">
+        
+      <main className="flex-1 flex flex-col bg-white overflow-y-auto md:overflow-hidden no-scrollbar items-center justify-start pt-8 md:pt-[5vh] pb-2 px-[4vh]">
           <AnimatePresence mode="wait">
             {status !== "success" ? (
               <motion.div 
@@ -88,15 +90,35 @@ const ContactForm = ({ onClose, sharedTransition }) => {
                 className="w-full max-w-[1250px] flex flex-col items-center"
               >
                 {/* TITRE ET SVG : Taille réduite sur mobile (scale-75 ou 50%) */}
-                <div className="flex flex-col items-center gap-4 mb-10 text-center scale-75 md:scale-100 origin-center">
-                  <img src={currentTheme === "dark" ? "/top-form-dark.svg" : "/top-form-main.svg"} alt="" className="h-[8vh] md:h-[10vh] object-contain" />
-                  <div className="flex items-center gap-3">
-                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[1.5vh] md:h-[2.5vh] object-contain" />
-                     <h1 className="text-2xl md:text-5xl font-bold uppercase leading-none text-center px-2">Donnez vie à votre projet !</h1>
-                     <img src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"} alt="" className="h-[1.5vh] md:h-[2.5vh] object-contain -scale-x-100" />
-                  </div>
-                  <p className="text-brand text-sm md:text-xl font-medium italic tracking-wider">✦˙⋆˚ Partagez vos idées et créons-les ensemble ˚⋆˙✦</p>
-                </div>
+                <div className="flex flex-col items-center gap-3 md:gap-4 mb-8 md:mb-10 text-center">
+              <img
+                src={currentTheme === "dark" ? "/top-form-dark.svg" : "/top-form-main.svg"}
+                alt=""
+                className="h-[60px] md:h-[12vh] object-contain"
+              />
+
+              <div className="flex items-center justify-center gap-2 md:gap-3 w-full">
+                <img
+                  src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"}
+                  alt=""
+                  className="hidden md:block h-[2.5vh] object-contain shrink-0"
+                />
+
+                <h1 className="text-[clamp(1.75rem,7vw,2.5rem)] md:text-5xl font-bold uppercase leading-[0.95] text-center px-1 md:px-2">
+                  Donnez vie à votre projet !
+                </h1>
+
+                <img
+                  src={currentTheme === "dark" ? "/header-form-dark.svg" : "/header-form-main.svg"}
+                  alt=""
+                  className="hidden md:block h-[2.5vh] object-contain -scale-x-100 shrink-0"
+                />
+              </div>
+
+              <p className="text-brand text-sm md:text-xl font-medium italic tracking-wider px-2">
+                ✦˙⋆˚ Partagez vos idées et créons-les ensemble ˚⋆˙✦
+              </p>
+            </div>
 
                 <form ref={form} onSubmit={sendEmail} className="w-full flex flex-col gap-6 px-0 md:px-20">
                   {/* INPUTS : Flex-col sur mobile, Flex-row sur PC */}
@@ -112,9 +134,11 @@ const ContactForm = ({ onClose, sharedTransition }) => {
                     {status === "sending" ? (
                       <span className="font-bold text-lg md:text-xl animate-pulse">Mail en cours d'envoi...</span>
                     ) : (
-                      <button type="submit" className="bg-brand text-white px-10 py-3 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-base md:text-lg">
-                        Envoyer
-                      </button>
+                     <button  type="submit" 
+                    className="bg-brand text-white px-5 py-2 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-sm md:px-12 md:py-4 md:text-lg"
+                  >
+                    Envoyer
+                  </button>
                     )}
                   </div>
                 </form>
@@ -131,14 +155,13 @@ const ContactForm = ({ onClose, sharedTransition }) => {
                 <p className="text-brand text-sm md:text-xl font-medium italic tracking-wider">✦˙⋆˚ Je reviendrai vers vous rapidement. ˚⋆˙✦</p>
               </motion.div>
             )}
-          </AnimatePresence>
+            </AnimatePresence>
+
+          <div className="md:hidden self-stretch mt-6 pb-0 -mx-[4vh]">
+            <MobileFooter currentTheme={currentTheme} />
+          </div>
         </main>
-
-        <div className="w-full h-[8vh] flex items-center justify-center flex-shrink-0 px-[4vh] bg-white">
-          <img src={currentTheme === "dark" ? "/illu-footer-dark.svg" : "/illu-footer-main.svg"} alt="" className="w-full h-[2.5vh] object-contain" />
-        </div>
       </div>
-
       {/* Pattern de droite (PC uniquement via hidden md:block) */}
       <div className="hidden md:block h-full z-40 w-[10vw] flex-shrink-0">
         <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l-2 border-brand" />
