@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import PatternColumn from "../components/ui/PatternColumn";
 import ThemeSwitch from "../components/ui/ThemeSwitch";
 import HeaderSimple from "../components/ui/HeaderSimple";
+import MobileScrollToggle from "../components/ui/MobileScrollToggle.jsx";
+import MobileFooter from "../components/ui/MobileFooter";
 
 const GalleryItem = ({ item }) => {
   const [isMuted, setIsMuted] = useState(true);
@@ -44,6 +46,7 @@ const GalleryItem = ({ item }) => {
 const ProjectDetail = ({ project, onClose, sharedTransition }) => {
   const navigate = useNavigate();
   const carouselRef = useRef(null);
+  const scrollAreaRef = useRef(null);
   const [width, setWidth] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -101,29 +104,49 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
         {/* --- NAVIGATION MOBILE (Portfolio + Burger) --- */}
         <div className="md:hidden sticky top-0 z-[30] w-full bg-white border-b-2 border-brand px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand">Portfolio</span>
+            <span className="text-xs font-bold uppercase text-brand">Portfolio</span>
             <div className="scale-50 origin-left flex items-center"> 
               <ThemeSwitch />
             </div>
           </div>
-          <button onClick={() => navigate('/burger-menu')} className="flex items-center gap-2 group cursor-pointer">
-            <span className="text-xs text-brand">À propos</span>
-            <img src={currentTheme === "dark" ? "/Picto_burger_1_dark.svg" : "/Picto_burger_1.svg"} alt="Menu" className="w-5 h-5 object-contain" />
-          </button>
-        </div>
+          <button
+            onClick={() => navigate("/burger-menu")}
+            className="flex items-center gap-2 group cursor-pointer"
+          >
+            <span className="text-xs italic text-brand">À propos</span>
 
-        {/* --- BANNIÈRE ÉTOILES MOBILE --- */}
-        <div className="md:hidden">
-          <HeaderSimple currentTheme={currentTheme} />
+            <motion.span
+              layoutId="mobile-menu-icon-wrap"
+              className="w-5 h-5 flex items-center justify-center"
+              initial={false}
+              animate={{ rotate: 0, scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 18
+              }}
+            >
+              <motion.img
+                layoutId="mobile-menu-icon"
+                src={
+                  currentTheme === "dark"
+                    ? "/Picto_burger_1_dark.svg"
+                    : "/Picto_burger_1.svg"
+                }
+                alt="Menu"
+                className="w-5 h-5 object-contain"
+              />
+            </motion.span>
+          </button>
         </div>
 
         {/* --- SECTION RETOUR (TON CODE D'ORIGINE) --- */}
         <motion.div 
-            className="w-full md:h-[9vh] md:border-b-2 border-brand flex-shrink-0 relative flex items-center bg-white z-20 py-2 md:py-0"
+            className="w-full flex-shrink-0 relative flex items-center bg-white z-20 px-4 pt-3 pb-1 md:h-[9vh] md:border-b-2 md:px-0 md:py-0"
         >
           <button 
             onClick={onClose} 
-            className="ml-[4vh] flex items-center gap-1 font-bold uppercase text-brand hover:text-accent transition-colors group"
+            className="ml-0 md:ml-[4vh] flex items-center gap-1 font-bold uppercase text-brand text-sm md:text-base hover:text-accent transition-colors group"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M7.35784 11.1113L14.2718 4L16 5.7775L9.95012 12L16 18.2225L14.2718 20L7.35784 12.8887C7.12872 12.653 7 12.3333 7 12C7 11.6667 7.12872 11.347 7.35784 11.1113Z" fill="currentColor"/>
@@ -133,17 +156,20 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
         </motion.div>
 
         {/* --- CONTENU --- */}
-        <main className="flex-1 flex flex-col pt-[1vh] bg-white overflow-y-auto md:overflow-hidden relative no-scrollbar pb-[8vh]">
+        <main
+          ref={scrollAreaRef}
+          className="flex-1 flex flex-col pt-[1vh] bg-white overflow-y-auto md:overflow-hidden relative no-scrollbar pb-[10vh]"
+        >
           
           {/* CAROUSEL AVEC EFFET PEEK ET DOTS */}
           <div className="flex-shrink-0 mb-[2vh] relative">
-            <div ref={carouselRef} className="h-[35vh] md:overflow-hidden px-0">
+            <div ref={carouselRef} className="h-[35vh] overflow-hidden px-0">
               <motion.div 
                 drag="x"
                 style={{ x }}
                 dragConstraints={{ right: 0, left: -width }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="flex gap-[2vw] md:gap-[0.5vw] h-full cursor-grab active:cursor-grabbing"
+                className="flex gap-3 md:gap-[0.5vw] h-full cursor-grab active:cursor-grabbing"
               >
                 <div className={`h-full ${project.mainImage.ratio} flex-shrink-0 overflow-hidden bg-gray-100`}>
                   <motion.img layoutId={`img-${project.id}`} src={project.mainImage.src} transition={sharedTransition} initial={false} className="w-full h-full object-cover pointer-events-none" />
@@ -168,7 +194,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
           </div>
 
           {/* FLÈCHES DE NAVIGATION (Gardées sur PC et Mobile) */}
-        <div className="absolute right-4 top-[55%] md:top-[45%] -translate-y-1/2 z-50 flex gap-2">
+        <div className="absolute right-4 top-[45%] md:top-[45%] -translate-y-1/2 z-50 flex gap-2">
           <button 
             onClick={() => scrollSlider("prev")}
             className={`p-2 transition-all rounded-sm ${canScrollLeft ? "text-brand hover:text-accent cursor-pointer opacity-100" : "text-brand opacity-50 cursor-default"}`}
@@ -202,32 +228,41 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
             {project.description}
           </div>
                
-            <div className="mt-8 md:mt-16 flex flex-col md:flex-row justify-between items-start md:items-end pb-2 flex-shrink-0 mb-[5rem] gap-6">              
-              <div className="flex flex-wrap gap-2 max-w-full md:max-w-[70%]">
-                {project.tags?.map((tag, i) => (
-                  <span key={i} className="px-4 py-1 rounded-full text-white text-[0.85rem] md:text-[1rem] uppercase font-light" style={{ backgroundColor: "#d49cff" }}>{tag}</span>
-                ))}
-              </div>
-              <div className="flex flex-col gap-1 w-full md:w-auto">
-                {project.links?.map((link, i) => (
-                  <a key={i} href={link.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-accent hover:opacity-70 transition-opacity text-[0.9rem]">
-                    <img src="/arrow-accent.svg" alt="" className="w-[1.5vh] h-[1.5vh]" />
-                    {link.label}
-                  </a>
-                ))}
-              </div>
+                      <div className="mt-auto pt-8 md:pt-12 pb-4 md:pb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+            <div className="flex flex-wrap gap-2 max-w-full md:max-w-[72%]">
+              {project.tags?.map((tag, i) => (
+                <span
+                  key={i}
+                  className="px-4 py-1 rounded-full text-white text-[0.85rem] md:text-[1rem] uppercase font-light"
+                  style={{ backgroundColor: "#d49cff" }}
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
+            
 
-            {/* FOOTER STICKY MOBILE PLEIN ÉCRAN */}
-            <div className="md:hidden bg-white w-full h-[2.5vh] flex items-center justify-center">
-  <img 
-    src={currentTheme === "dark" ? "/illu-footer-dark.svg" : "/illu-footer-main.svg"} 
-    className="h-auto max-h-[8vh] object-contain"
-    alt=""
-  />
+  <div className="flex flex-col gap-2 w-full md:w-auto md:items-end md:self-end">
+    {project.links?.map((link, i) => (
+      <a
+        key={i}
+        href={link.url}
+        target="_blank"
+        rel="noreferrer"
+        className="flex items-center gap-2 text-accent hover:opacity-70 transition-opacity text-[0.9rem]"
+      >
+        <img src="/arrow-accent.svg" alt="" className="w-[1.5vh] h-[1.5vh]" />
+        {link.label}
+      </a>
+    ))}
+  </div>
+    
 </div>
-          </div>
-        </main>
+  </div>
+
+   </main>
+        <MobileScrollToggle scrollRef={scrollAreaRef} bottomOffset="2rem" />
+        
       </div>
 
       <div className="hidden md:block h-full z-40 w-[10vw] flex-shrink-0">

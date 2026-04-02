@@ -10,13 +10,13 @@ function AnimatedRoutes() {
   
   return (
     /* On utilise "popLayout" pour que les deux pages s'animent en même temps */
-    <AnimatePresence mode="popLayout">
+    <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
         {/* AJOUT DE LA ROUTE BURGER MENU */}
         <Route path="/burger-menu" element={<BurgerMenu />} />
-      </Routes>
+        </Routes>
     </AnimatePresence>
   );
 }
@@ -29,5 +29,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;
