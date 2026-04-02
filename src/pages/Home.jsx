@@ -276,13 +276,10 @@ const Home = () => {
                         }}
                       >
                         <div className="w-full h-full bg-gray-50 overflow-hidden border border-brand/10">
-                          <motion.img 
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.3, ease: "easeOut" }}
-                            layoutId={`img-${p.id}`}
-                            src={p.mainImage.src} 
-                            initial={false}
+                            <img
+                            src={p.mainImage.src}
                             className="w-full h-full object-cover origin-center border-2 border-brand md:border-hidden"
+                            alt=""
                           />
                         </div>
                       </div>
@@ -328,11 +325,13 @@ const Home = () => {
       </div>
 
       {/* Overlays */}
-      <AnimatePresence>
-        {selectedId && (
-          <ProjectDetail project={project} onClose={() => setSelectedId(null)} sharedTransition={sharedTransition} />
-        )}
-      </AnimatePresence>
+      {selectedId && (
+  <ProjectDetail
+    project={project}
+    onClose={() => setSelectedId(null)}
+    sharedTransition={sharedTransition}
+  />
+)}
 
       <AnimatePresence>
         {showContact && (

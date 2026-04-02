@@ -95,10 +95,13 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
   }, [project]);
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-      className="fixed top-0 right-0 left-0 md:left-[8px] bottom-0 z-40 bg-white flex overflow-hidden font-inter"
-    >
+    <motion.div
+  initial={{ opacity: 0, pointerEvents: "none" }}
+  animate={{ opacity: 1, pointerEvents: "auto" }}
+  exit={{ opacity: 0, pointerEvents: "none" }}
+  transition={{ duration: 0.3 }}
+  className="fixed inset-0 md:left-[8px] z-40 bg-white flex overflow-hidden font-inter"
+>
       <div className="flex-1 flex flex-col min-w-0 h-full relative">
         
         {/* --- NAVIGATION MOBILE (Portfolio + Burger) --- */}
