@@ -135,7 +135,7 @@ const ContactForm = ({ onClose, sharedTransition }) => {
                       <span className="font-bold text-lg md:text-xl animate-pulse">Mail en cours d'envoi...</span>
                     ) : (
                      <button  type="submit" 
-                    className="bg-brand text-white px-5 py-2 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-sm md:px-12 md:py-4 md:text-lg"
+                    className="bg-brand text-white px-5 py-2 rounded-full font-bold uppercase hover:bg-accent transition-all text-sm md:px-12 md:py-4 md:text-lg"
                   >
                     Envoyer
                   </button>
