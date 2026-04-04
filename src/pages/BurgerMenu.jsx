@@ -1,16 +1,15 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import ThemeSwitch from "../components/ui/ThemeSwitch";
 import HeaderSimple from "../components/ui/HeaderSimple";
-import ContactForm from "./ContactForm";
 import MobileScrollToggle from "../components/ui/MobileScrollToggle";
 import MobileFooter from "../components/ui/MobileFooter";
+import BurgerLottie from "../components/ui/BurgerLottie";
 
 const BurgerMenu = () => {
   const navigate = useNavigate();
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [showContact, setShowContact] = useState(false);
   const scrollAreaRef = useRef(null);
 
   useEffect(() => {
@@ -46,44 +45,6 @@ const BurgerMenu = () => {
           </div>
         </div>
 
-        <button
-        onClick={() => navigate("/")}
-        className="flex items-center gap-2 group cursor-pointer"
-      >
-        <span className="text-xs italic text-brand">Fermer</span>
-
-        <motion.span
-          layoutId="mobile-menu-icon-wrap"
-          className="w-5 h-5 flex items-center justify-center"
-          initial={false}
-          transition={{
-            layout: {
-              type: "spring",
-              stiffness: 320,
-              damping: 28
-            }
-          }}
-        >
-          <motion.img
-            layoutId="mobile-menu-icon"
-            src={
-              currentTheme === "dark"
-                ? "/Picto_burger_1_dark.svg"
-                : "/Picto_burger_1.svg"
-            }
-            alt="Menu"
-            className="w-5 h-5 object-contain origin-center"
-            style={{ rotate: "45deg", scale: 1.12 }}
-            transition={{
-              layout: {
-                type: "spring",
-                stiffness: 320,
-                damping: 28
-              }
-            }}
-          />
-        </motion.span>
-      </button>
       </div>
 
       <HeaderSimple currentTheme={currentTheme} />
@@ -169,10 +130,11 @@ const BurgerMenu = () => {
             </h3>
 
             <div className="flex flex-col gap-4 text-[clamp(0.85rem,1.8vh,1.125rem)]">
+              {/* MODIFICATION ICI : Lien vers la nouvelle route /contact */}
               <a
                 onClick={(e) => {
                   e.preventDefault();
-                  setShowContact(true);
+                  navigate("/contact");
                 }}
                 className="flex items-center gap-[12px] hover:text-accent transition-colors no-underline cursor-pointer"
               >
@@ -236,25 +198,15 @@ const BurgerMenu = () => {
                 Télécharger mon CV
               </a>
             </div>
-              </section>
-                <div className="md:hidden mt-8 -mb-4 -mx-8">
-                <MobileFooter currentTheme={currentTheme} />
-              </div>
+          </section>
+          <div className="md:hidden mt-8 -mb-4 -mx-8">
+            <MobileFooter currentTheme={currentTheme} />
+          </div>
         </div>
       </motion.div>
 
-      <MobileScrollToggle scrollRef={scrollAreaRef}/>
-
-      <AnimatePresence>
-        {showContact && (
-          <ContactForm
-            onClose={() => setShowContact(false)}
-            sharedTransition={{ duration: 0.6 }}
-          />
-        )}
-      </AnimatePresence>
+      <MobileScrollToggle scrollRef={scrollAreaRef} />
     </div>
-    
   );
 };
 
