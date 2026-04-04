@@ -91,14 +91,14 @@ const CustomScrollbar = ({ scrollRef }) => {
   }, [scrollRef]);
 
   return (
-    <div className="flex flex-col h-full w-full bg-white">
+    <div className="custom-scrollbar flex flex-col h-full w-full bg-white">
       {/* Chevron Haut */}
       <button 
         onMouseDown={() => startContinuousScroll("up")}
         onMouseUp={stopContinuousScroll}
         onMouseLeave={stopContinuousScroll}
         onClick={() => handleScrollAction("up")}
-        className="w-full h-[25px] flex items-center justify-center text-brand border-b-2 border-brand hover:text-accent cursor-pointer flex-shrink-0"
+        className="w-full h-[25px] flex items-center justify-center text-brand border-b-2 border-brand hover:text-accent flex-shrink-0"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7 14l5-5 5 5" stroke="currentColor" strokeWidth="3" strokeLinecap="square"/>
@@ -114,7 +114,7 @@ const CustomScrollbar = ({ scrollRef }) => {
             top: `${thumbTop}px`,
             position: 'absolute'
           }}
-          className={`left-0 right-0 bg-brand w-full cursor-grab ${isDragging ? 'active:cursor-grabbing' : ''}`}
+          className="left-0 right-0 bg-brand w-full"
         />
       </div>
 
@@ -124,7 +124,7 @@ const CustomScrollbar = ({ scrollRef }) => {
         onMouseUp={stopContinuousScroll}
         onMouseLeave={stopContinuousScroll}
         onClick={() => handleScrollAction("down")}
-        className="w-full h-[25px] flex items-center justify-center text-brand border-t-2 border-brand hover:text-accent cursor-pointer flex-shrink-0"
+        className="w-full h-[25px] flex items-center justify-center text-brand border-t-2 border-brand hover:text-accent flex-shrink-0"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="3" strokeLinecap="square"/>
