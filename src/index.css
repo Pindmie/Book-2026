@@ -66,3 +66,120 @@ body {
     column-count: 3 !important; 
   }
 }
+
+
+/* Curseur normal */
+html,
+body,
+p,
+span,
+div,
+section,
+article,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+ul,
+ol,
+strong,
+em,
+small,
+label {
+  cursor: url("public/Curseurs/Cursor1.png") 8 16, default !important;
+}
+
+/* Curseur interactif */
+a,
+button,
+[role="button"],
+input,
+textarea,
+select,
+[contenteditable="true"],
+input:hover,
+textarea:hover,
+select:hover,
+[contenteditable="true"]:hover,
+input:focus,
+textarea:focus,
+select:focus,
+[contenteditable="true"]:focus,
+input:active,
+textarea:active,
+select:active,
+[contenteditable="true"]:active,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[contenteditable="true"]:focus-visible {
+  cursor: url("public/Curseurs/CursorClick.png") 10 2, pointer !important;
+}
+
+/* Curseur scollbar */
+.custom-scrollbar,
+.custom-scrollbar *,
+.scrollbar-thumb,
+.scrollbar-thumb *,
+.scrollbar-button,
+.scrollbar-button * {
+  cursor: url("public/Curseurs/CursorClick.png") 10 2, pointer !important;
+}
+
+/* Curseur slider */
+.project-slider,
+.cursor-pointer,
+.cursor-pointer * {
+  cursor: url("public/Curseurs/CursorImage.png") 8 16, pointer !important;
+}
+
+
+   IMAGES CLIQUABLES
+
+a img,
+button img,
+[role="button"] img,
+.cursor-pointer img {
+  cursor: url("public/Curseurs/CursorImage.png") 8 16, pointer !important;
+}
+
+/* Curseur texte (hyper important pour forms) */
+input,
+textarea,
+select,
+[contenteditable="true"] {
+  cursor: url("public/Curseurs/CursorText.png") 2 2, default !important;
+  
+}
+
+
+   SCROLLBAR / DRAG / SLIDER
+
+.swiper,
+.swiper *,
+.swiper-wrapper,
+.swiper-slide,
+.swiper-button-next,
+.swiper-button-prev,
+.swiper-pagination,
+.swiper-pagination-bullet,
+.splide,
+.splide *,
+.embla,
+.embla *,
+[data-scroll],
+[data-drag],
+[data-scrollbar],
+.drag,
+.grab,
+.grabbing {
+  cursor: url("public/Curseurs/CursorClick.png") 6 2, pointer !important;
+}
+
+.theme-switch,
+.theme-switch * {
+  cursor: url("public/Curseurs/CursorClick.png") 10 2, default !important;
+}

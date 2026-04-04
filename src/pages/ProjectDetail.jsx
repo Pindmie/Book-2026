@@ -144,7 +144,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
                 style={{ x }}
                 dragConstraints={{ right: 0, left: -width }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="flex gap-3 md:gap-[0.5vw] h-full cursor-grab active:cursor-grabbing"
+                className="flex gap-3 md:gap-[0.5vw] h-full cursor-pointer"
               >
                 <div className={`h-full ${project.mainImage.ratio} flex-shrink-0 overflow-hidden bg-gray-100`}>
                   <motion.img layoutId={`img-${project.id}`} src={project.mainImage.src} transition={sharedTransition} initial={false} className="w-full h-full object-cover pointer-events-none" />
