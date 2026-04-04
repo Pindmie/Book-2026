@@ -1,12 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom"; // Ajout de l'import
 import PatternColumn from "../components/ui/PatternColumn";
 import ThemeSwitch from "../components/ui/ThemeSwitch";
 import emailjs from "@emailjs/browser";
 import MobileFooter from "../components/ui/MobileFooter";
+import MobileScrollToggle from "../components/ui/MobileScrollToggle.jsx";
 
-const ContactForm = ({ onClose, sharedTransition }) => {
+const ContactForm = ({ sharedTransition }) => {
   const form = useRef();
+  const navigate = useNavigate(); // Initialisation du hook navigate
   const [currentTheme, setCurrentTheme] = useState("light");
   const [status, setStatus] = useState("idle");
   const scrollAreaRef = useRef(null);
@@ -66,7 +69,7 @@ const ContactForm = ({ onClose, sharedTransition }) => {
           className="w-full h-[9vh] border-b-2 border-brand flex-shrink-0 relative flex items-center justify-between px-6 bg-white z-10"
         >
           <button 
-            onClick={onClose} 
+            onClick={() => navigate(-1)} // Changé de onClose à navigate(-1)
             className="flex items-center gap-1 font-bold uppercase text-brand hover:text-accent transition-colors group cursor-pointer"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +84,7 @@ const ContactForm = ({ onClose, sharedTransition }) => {
           </div>
         </motion.div>
         
-      <main className="flex-1 flex flex-col bg-white overflow-y-auto md:overflow-hidden no-scrollbar items-center justify-start pt-8 md:pt-[5vh] pb-2 px-[4vh]">
+      <main ref={scrollAreaRef} className="flex-1 flex flex-col bg-white overflow-y-auto md:overflow-hidden no-scrollbar items-center justify-start pt-8 md:pt-[5vh] pb-2 px-[4vh]">
           <AnimatePresence mode="wait">
             {status !== "success" ? (
               <motion.div 
@@ -89,7 +92,6 @@ const ContactForm = ({ onClose, sharedTransition }) => {
                 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
                 className="w-full max-w-[1250px] flex flex-col items-center"
               >
-                {/* TITRE ET SVG : Taille réduite sur mobile (scale-75 ou 50%) */}
                 <div className="flex flex-col items-center gap-3 md:gap-4 mb-8 md:mb-10 text-center">
               <img
                 src={currentTheme === "dark" ? "/top-form-dark.svg" : "/top-form-main.svg"}
@@ -121,7 +123,6 @@ const ContactForm = ({ onClose, sharedTransition }) => {
             </div>
 
                 <form ref={form} onSubmit={sendEmail} className="w-full flex flex-col gap-6 px-0 md:px-20">
-                  {/* INPUTS : Flex-col sur mobile, Flex-row sur PC */}
                   <div className="flex flex-col md:flex-row gap-6 w-full">
                     <input type="text" name="name" required placeholder="Nom, Prénom*" className="text-brand placeholder:text-silver placeholder:italic flex-1 border-2 border-brand p-4 md:p-5 focus:outline-none transition-all text-base md:text-lg bg-transparent" />
                     <input type="email" name="email" required placeholder="Adresse mail (e-mail)*" className="text-brand placeholder:text-silver placeholder:italic flex-1 border-2 border-brand p-4 md:p-5 focus:outline-none transition-all text-base md:text-lg bg-transparent" />
@@ -134,11 +135,11 @@ const ContactForm = ({ onClose, sharedTransition }) => {
                     {status === "sending" ? (
                       <span className="font-bold text-lg md:text-xl animate-pulse">Mail en cours d'envoi...</span>
                     ) : (
-                     <button  type="submit" 
-                    className="bg-brand text-white px-5 py-2 rounded-full font-bold uppercase hover:bg-accent transition-all text-sm md:px-12 md:py-4 md:text-lg"
-                  >
-                    Envoyer
-                  </button>
+                      <button  type="submit" 
+                        className="bg-brand text-white px-5 py-2 rounded-full font-bold uppercase hover:bg-accent transition-all cursor-pointer text-sm md:px-12 md:py-4 md:text-lg"
+                      >
+                        Envoyer
+                      </button>
                     )}
                   </div>
                 </form>
@@ -162,10 +163,10 @@ const ContactForm = ({ onClose, sharedTransition }) => {
           </div>
         </main>
       </div>
-      {/* Pattern de droite (PC uniquement via hidden md:block) */}
       <div className="hidden md:block h-full z-40 w-[10vw] flex-shrink-0">
         <PatternColumn width="100%" borderLeft={true} className="pl-1 border-l-2 border-brand" />
       </div>
+      <MobileScrollToggle scrollRef={scrollAreaRef} bottomOffset="2rem" />
     </motion.div>
   );
 };
