@@ -14,9 +14,27 @@ import MobileFooter from "../components/ui/MobileFooter";
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  
-  // Lecture directe de l'ID depuis l'URL
-  const selectedId = searchParams.get("project");
+
+  // 1. Fonction pour transformer un titre en lien propre (slug)
+  const slugify = (text) => {
+    return text
+      .toLowerCase()
+      .normalize("NFD") // Sépare les accents des lettres
+      .replace(/[\u0300-\u036f]/g, "") // Supprime les accents
+      .replace(/\s+/g, '-') // Remplace les espaces par des tirets
+      .replace(/[^\w-]+/g, ''); // Supprime les caractères spéciaux
+  };
+
+  // 2. On récupère le nom du projet depuis l'URL
+  const projectSlug = searchParams.get("project");
+
+  // 3. On trouve le projet dont le titre correspond au slug de l'URL
+  const project = useMemo(() => {
+    return projects.find(p => slugify(p.title) === projectSlug);
+  }, [projectSlug]);
+
+  // 4. On déduit le selectedId pour que tes animations Framer Motion fonctionnent toujours
+  const selectedId = project ? project.id : null;
 
   const [showContact, setShowContact] = useState(false);
   const [currentTheme, setCurrentTheme] = useState("light");
@@ -26,11 +44,14 @@ const Home = () => {
     duration: 0.6, 
     ease: [0.43, 0.13, 0.23, 0.96] 
   };
-
-  // Synchronisation simplifiée de l'URL
+  
+  // 5. Modification de l'URL avec le titre au clic
   const handleSetSelectedId = (id) => {
     if (id) {
-      setSearchParams({ project: id }, { replace: false });
+      const targetProject = projects.find(p => p.id === id);
+      if (targetProject) {
+        setSearchParams({ project: slugify(targetProject.title) }, { replace: false });
+      }
     } else {
       setSearchParams({}, { replace: false });
     }
@@ -48,8 +69,6 @@ const Home = () => {
     updateTheme();
     return () => observer.disconnect();
   }, []);
-
-  const project = useMemo(() => projects.find(p => p.id === selectedId), [selectedId]);
 
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden font-inter text-brand bg-white">
