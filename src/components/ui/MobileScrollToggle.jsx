@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const MobileScrollToggle = ({ scrollRef, bottomOffset = "5.5rem" }) => {
+const MobileScrollToggle = ({ scrollRef, bottomOffset = "2rem" }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -81,7 +81,7 @@ const MobileScrollToggle = ({ scrollRef, bottomOffset = "5.5rem" }) => {
       type="button"
       onClick={handleClick}
       aria-label={isAtBottom ? "Revenir en haut" : "Aller en bas"}
-      className="md:hidden fixed right-5 z-[100] w-10 h-10 rounded-full border border-[#8A8A8A]/35 bg-white/18 backdrop-blur-[2px] shadow-[0_4px_12px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#6F6F6F] transition-all"
+      className="md:hidden fixed right-5 z-[100] w-10 h-10 rounded-full border border-current bg-white/30 backdrop-blur-xs shadow-[0_4px_12px_rgba(0,0,0,0.06)] flex items-center justify-center transition-all"
       style={{ bottom: bottomOffset }}
     >
       <svg

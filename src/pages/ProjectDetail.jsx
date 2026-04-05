@@ -112,35 +112,7 @@ const ProjectDetail = ({ project, onClose, sharedTransition }) => {
               <ThemeSwitch />
             </div>
           </div>
-          <button
-            onClick={() => navigate("/burger-menu")}
-            className="flex items-center gap-2 group cursor-pointer"
-          >
-            <span className="text-xs italic text-brand">À propos</span>
-
-            <motion.span
-              layoutId="mobile-menu-icon-wrap"
-              className="w-5 h-5 flex items-center justify-center"
-              initial={false}
-              animate={{ rotate: 0, scale: 1 }}
-              transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 18
-              }}
-            >
-              <motion.img
-                layoutId="mobile-menu-icon"
-                src={
-                  currentTheme === "dark"
-                    ? "/Picto_burger_1_dark.svg"
-                    : "/Picto_burger_1.svg"
-                }
-                alt="Menu"
-                className="w-5 h-5 object-contain"
-              />
-            </motion.span>
-          </button>
+  
         </div>
 
         {/* --- SECTION RETOUR (TON CODE D'ORIGINE) --- */}
