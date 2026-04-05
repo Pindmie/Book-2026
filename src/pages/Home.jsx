@@ -121,7 +121,7 @@ const Home = () => {
               </section>
 
               <section className="pl-[3rem]">
-                <h3 className="text-[clamp(0.85rem,2vh,1.125rem)] mb-2 uppercase">Mes contacts</h3>
+                <h3 className="text-[clamp(0.85rem,2vh,1.125rem)] mb-2 font-bold">Mes contacts</h3>
                 <div className="flex flex-col text-[clamp(0.85rem,1.8vh,1.125rem)]">
                   <a 
                     onClick={(e) => { e.preventDefault(); setShowContact(true); }} 
@@ -138,7 +138,12 @@ const Home = () => {
                     </svg>
                     Itch.io
                   </a>
-                  <a href="/CV - LOPES Léa-Anna 2026.pdf" target="_blank" rel="noreferrer" className="mt-2 flex items-center justify-center gap-2 border border-brand px-3 py-1 rounded-full font-bold uppercase text-sm text-brand bg-white hover:bg-brand hover:text-white transition-colors duration-300">
+                  <a href="/CV - LOPES Léa-Anna 2026.pdf" target="_blank" rel="noreferrer" className="mt-2 flex items-center justify-center gap-2 border border-brand px-3 py-1 rounded-full text-brand bg-white hover:bg-brand hover:text-white transition-colors duration-300">
+                  <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.94077 0H6.95384L6.95384 10.9612H4.96691V12.9316H6.95384V14.902H8.94077V12.9316H10.9277V10.9612L8.94077 10.9612L8.94077 0ZM12.9146 8.99085V10.9612H10.9277V8.99085H12.9146ZM12.9146 8.99085V7.02048H14.9016V8.99085H12.9146ZM2.97998 8.99085V10.9612H4.96691V8.99085H2.97998ZM2.97998 8.99085L2.97998 7.02048H0.993056L0.993056 8.99085H2.97998Z" fill="currentColor"/>
+                  <path d="M6.95384 0H8.94077L8.94077 10.9612L10.9277 10.9612V8.99085H12.9146V7.02048H14.9016V8.99085H12.9146V10.9612H10.9277L8.94077 10.9612L8.94077 0H6.95384L6.95384 10.9612H4.96691H2.97998V8.99085H0.993056L0.993056 7.02048H2.97998L2.97998 8.99085H4.96691V10.9612H6.95384L6.95384 0Z" fill="currentColor"/>
+                  <path d="M0 14.9019H15.8954V16.8888H0V14.9019Z" fill="currentColor"/>
+                  </svg>
                     Télécharger mon CV
                   </a>
                 </div>

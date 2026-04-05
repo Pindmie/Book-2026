@@ -89,7 +89,7 @@ strong,
 em,
 small,
 label {
-  cursor: url("public/Curseurs/Cursor1.png") 8 16, default !important;
+  cursor: url("/Curseurs/Cursor1.png") 8 16, default !important;
 }
 
 /* Curseur interactif */
@@ -116,7 +116,7 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 [contenteditable="true"]:focus-visible {
-  cursor: url("public/Curseurs/CursorClick.png") 10 2, pointer !important;
+  cursor: url("/Curseurs/CursorClick.png") 10 2, pointer !important;
 }
 
 /* Curseur scollbar */
@@ -126,14 +126,14 @@ select:focus-visible,
 .scrollbar-thumb *,
 .scrollbar-button,
 .scrollbar-button * {
-  cursor: url("public/Curseurs/CursorClick.png") 10 2, pointer !important;
+  cursor: url("/Curseurs/CursorClick.png") 10 2, pointer !important;
 }
 
 /* Curseur slider */
 .project-slider,
 .cursor-pointer,
 .cursor-pointer * {
-  cursor: url("public/Curseurs/CursorImage.png") 8 16, pointer !important;
+  cursor: url("/Curseurs/CursorImage.png") 8 16, pointer !important;
 }
 
 
@@ -143,7 +143,7 @@ a img,
 button img,
 [role="button"] img,
 .cursor-pointer img {
-  cursor: url("public/Curseurs/CursorImage.png") 8 16, pointer !important;
+  cursor: url("/Curseurs/CursorImage.png") 8 16, pointer !important;
 }
 
 /* Curseur texte (hyper important pour forms) */
@@ -151,7 +151,7 @@ input,
 textarea,
 select,
 [contenteditable="true"] {
-  cursor: url("public/Curseurs/CursorText.png") 2 2, default !important;
+  cursor: url("/Curseurs/CursorText.png") 2 2, default !important;
 }
 
 
@@ -175,10 +175,10 @@ select,
 .drag,
 .grab,
 .grabbing {
-  cursor: url("public/Curseurs/CursorClick.png") 6 2, pointer !important;
+  cursor: url("/Curseurs/CursorClick.png") 6 2, pointer !important;
 }
 
 .theme-switch,
 .theme-switch * {
-  cursor: url("public/Curseurs/CursorClick.png") 10 2, default !important;
+  cursor: url("/Curseurs/CursorClick.png") 10 2, default !important;
 }
