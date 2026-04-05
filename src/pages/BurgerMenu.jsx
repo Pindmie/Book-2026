@@ -7,7 +7,7 @@ import MobileScrollToggle from "../components/ui/MobileScrollToggle";
 import MobileFooter from "../components/ui/MobileFooter";
 import BurgerLottie from "../components/ui/BurgerLottie";
 
-const BurgerMenu = () => {
+const BurgerMenu = ({ onClose }) => {
   const navigate = useNavigate();
   const [currentTheme, setCurrentTheme] = useState("light");
   const scrollAreaRef = useRef(null);

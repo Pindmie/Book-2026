@@ -7,7 +7,7 @@ import emailjs from "@emailjs/browser";
 import MobileFooter from "../components/ui/MobileFooter";
 import MobileScrollToggle from "../components/ui/MobileScrollToggle.jsx";
 
-const ContactForm = ({ sharedTransition }) => {
+const ContactForm = ({ sharedTransition, onClose }) => {
   const form = useRef();
   const navigate = useNavigate(); // Initialisation du hook navigate
   const [currentTheme, setCurrentTheme] = useState("light");
@@ -45,7 +45,7 @@ const ContactForm = ({ sharedTransition }) => {
   return (
     <motion.div 
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-      className="fixed top-0 right-0 left-0 bottom-0 z-[60] bg-white flex overflow-hidden font-inter text-brand"
+      className="fixed top-0 right-0 left-0 bottom-0 z-[600] bg-white flex overflow-hidden font-inter text-brand"
     >
       {/* Panneau latéral (PC uniquement via hidden md:flex) */}
       <motion.div 
@@ -61,7 +61,7 @@ const ContactForm = ({ sharedTransition }) => {
       </motion.div>
 
       {/* Main Container */}
-      <div className="flex-1 flex flex-col min-w-0 h-full md:ml-[8px]">
+      <div className="flex-1 flex flex-col min-w-0 h-full md:ml-[8px] ">
         {/* Header */}
         <motion.div 
           layoutId="header-section" 
@@ -69,7 +69,10 @@ const ContactForm = ({ sharedTransition }) => {
           className="w-full h-[9vh] border-b-2 border-brand flex-shrink-0 relative flex items-center justify-between px-6 bg-white z-10"
         >
           <button 
-            onClick={onClose} 
+            onClick={() => {
+              if (onClose) onClose(); // Si on est en mode overlay, on ferme l'état
+              navigate("/");          // Dans tous les cas, on retourne à la racine
+            }} 
             className="flex items-center gap-1 font-bold uppercase text-brand hover:text-accent transition-colors group"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
