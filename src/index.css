@@ -152,7 +152,6 @@ textarea,
 select,
 [contenteditable="true"] {
   cursor: url("public/Curseurs/CursorText.png") 2 2, default !important;
-  
 }
 
 

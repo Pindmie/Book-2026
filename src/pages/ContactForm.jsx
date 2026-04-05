@@ -67,7 +67,7 @@ const ContactForm = ({ onClose, sharedTransition }) => {
         >
           <button 
             onClick={onClose} 
-            className="flex items-center gap-1 font-bold uppercase text-brand hover:text-accent transition-colors group cursor-pointer"
+            className="flex items-center gap-1 font-bold uppercase text-brand hover:text-accent transition-colors group"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M7.35784 11.1113L14.2718 4L16 5.7775L9.95012 12L16 18.2225L14.2718 20L7.35784 12.8887C7.12872 12.653 7 12.3333 7 12C7 11.6667 7.12872 11.347 7.35784 11.1113Z" fill="currentColor"/>
