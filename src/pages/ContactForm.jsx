@@ -81,10 +81,6 @@ const ContactForm = ({ sharedTransition, onClose }) => {
             RETOUR
           </button>
 
-          <div className="flex items-center gap-3">
-            <span className="text-[14px] font-bold uppercase tracking-widest text-brand">Mode</span>
-            <ThemeSwitch />
-          </div>
         </motion.div>
         
       <main ref={scrollAreaRef} className="flex-1 flex flex-col bg-white overflow-y-auto md:overflow-hidden no-scrollbar items-center justify-start pt-8 md:pt-[5vh] pb-2 px-[4vh]">
