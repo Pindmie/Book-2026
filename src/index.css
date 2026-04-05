@@ -153,8 +153,11 @@ select,
 [contenteditable="true"] {
   cursor: url("/Curseurs/CursorText.png") 2 2, default !important;
   
+<<<<<<< HEAD
 }
 
+=======
+>>>>>>> 39673b76e2e53b914e9498b1b4f1b255c64d405c
 
    SCROLLBAR / DRAG / SLIDER
 
